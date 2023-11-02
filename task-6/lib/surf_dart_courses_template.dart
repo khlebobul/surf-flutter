@@ -1,15 +1,15 @@
 class Product {
-  int id;
-  String category;
-  String name;
-  double price;
-  int quantity;
+  final int id;
+  final String category;
+  final String name;
+  final int price;
+  final int quantity;
 
   Product(this.id, this.category, this.name, this.price, this.quantity);
 
   @override
   String toString() {
-    return '$id\t$category\t$name\t${price.toStringAsFixed(2)} рублей\t$quantity штук';
+    return '$id\t$category\t$name\t$price руб.\t$quantity шт.';
   }
 }
 
@@ -17,19 +17,19 @@ abstract class Filter {
   bool apply(Product product);
 }
 
-class CategoryFilter extends Filter {
-  String category;
+class CategoryFilter implements Filter {
+  final String categoryToFilter;
 
-  CategoryFilter(this.category);
+  CategoryFilter(this.categoryToFilter);
 
   @override
   bool apply(Product product) {
-    return product.category.toLowerCase() == category.toLowerCase();
+    return product.category == categoryToFilter;
   }
 }
 
-class PriceFilter extends Filter {
-  double maxPrice;
+class PriceFilter implements Filter {
+  final int maxPrice;
 
   PriceFilter(this.maxPrice);
 
@@ -39,8 +39,8 @@ class PriceFilter extends Filter {
   }
 }
 
-class QuantityFilter extends Filter {
-  int maxQuantity;
+class QuantityFilter implements Filter {
+  final int maxQuantity;
 
   QuantityFilter(this.maxQuantity);
 
@@ -51,7 +51,7 @@ class QuantityFilter extends Filter {
 }
 
 void applyFilter(List<Product> products, Filter filter) {
-  print("Id\tCategory\tName\tPrice\tQuantity");
+  print('ID\tКатегория\tНаименование\tЦена\tКоличество');
   for (Product product in products) {
     if (filter.apply(product)) {
       print(product);
@@ -60,23 +60,44 @@ void applyFilter(List<Product> products, Filter filter) {
 }
 
 void main() {
-  // Создаем список товаров
-  List<Product> products = [
-    Product(1, "Хлеб", "<Бородинский", 500, 5),
-    Product(2, "Хлеб", "Белый", 200, 15),
-    Product(3, "Молоко", "Полосатый кот", 50, 53),
-    Product(4, "Молоко", "коровка", 50, 53),
-    Product(5, "Вода", "Апельсин", 25, 100),
-    Product(6, "Вода", "Бородинский", 500, 5),
-  ];
+  final articles = '''
+1,хлеб,Бородинский,500,5
+2,хлеб,Белый,200,15
+3,молоко,Полосатый кот,50,53
+4,молоко,Коровка,50,53
+5,вода,Апельсин,25,100
+6,вода,Бородинский,500,5
+''';
 
-  // Применяем фильтры и выводим результаты
-  print("Filter by Category (Electronics):");
-  applyFilter(products, CategoryFilter("Electronics"));
+  List<String> lines = articles.trim().split('\n');
 
-  print("\nFilter by Price (<= 1000 rubles):");
-  applyFilter(products, PriceFilter(1000.0));
+  List<Product> products = [];
 
-  print("\nFilter by Quantity (< 25 pieces):");
-  applyFilter(products, QuantityFilter(25));
+  for (String line in lines) {
+    List<String> parts = line.split(',');
+    if (parts.length == 5) {
+      int? id = int.tryParse(parts[0]);
+      String category = parts[1];
+      String name = parts[2];
+      int? price = int.tryParse(parts[3]);
+      int? quantity = int.tryParse(parts[4]);
+
+      if (id != null && price != null && quantity != null) {
+        Product product = Product(id, category, name, price, quantity);
+        products.add(product);
+      }
+    }
+  }
+
+  print('Все товары:');
+  applyFilter(products, PriceFilter(10000)); // Вывести все товары
+
+  print('\nФильтр по категории "хлеб":');
+  applyFilter(products, CategoryFilter('хлеб'));
+
+  print('\nФильтр по цене не более 500 рублей:');
+  applyFilter(products, PriceFilter(500));
+
+  print('\nФильтр по количеству менее 10 штук:');
+  applyFilter(products, QuantityFilter(10));
 }
