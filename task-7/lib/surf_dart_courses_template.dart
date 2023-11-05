@@ -21,7 +21,7 @@ void main() {
       name: 'Персик',
       categoryName: 'Растительная пища',
       subcategoryName: 'Фрукты',
-      expirationDate: DateTime(2022, 12, 22),
+      expirationDate: DateTime(2024, 12, 22),
       qty: 5,
     ),
     RawProductItem(
@@ -133,7 +133,7 @@ void main() {
       name: 'Гречка',
       categoryName: 'Растительная пища',
       subcategoryName: 'Крупы',
-      expirationDate: DateTime(2022, 12, 22),
+      expirationDate: DateTime(2023, 12, 22),
       qty: 8,
     ),
     RawProductItem(
