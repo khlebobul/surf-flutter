@@ -10,11 +10,12 @@ class SurfApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Counter app v2.0',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
       ),
       home: HomePageStateful(title: 'Stateful page'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -30,39 +31,68 @@ class HomePageStateful extends StatefulWidget {
 
 class _HomePageStatefulState extends State<HomePageStateful> {
   int _counter = 0;
+  int _incrementCount = 0;
+  int _decrementCount = 0;
 
   void _incrementCounter() {
-    print('new value: $_counter');
     setState(() {
-      _counter += 1;
+      _counter++;
+      _incrementCount++;
     });
+  }
+
+  void _decrementCounter() {
+    if (_counter > 0) {
+      setState(() {
+        _counter--;
+        _decrementCount++;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    print('build() method called');
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Суперсчетчик v2.0'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Text(
+              'Значение счетчика 🧮:',
+              style: TextStyle(fontSize: 24),
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 16),
+            Text(
+              'Нажали на ➕: $_incrementCount',
+              style: TextStyle(fontSize: 18),
+            ),
+            Text(
+              'Нажали на ➖: $_decrementCount',
+              style: TextStyle(fontSize: 18),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: _incrementCounter,
+            child: Icon(Icons.add),
+          ),
+          SizedBox(height: 16),
+          FloatingActionButton(
+            onPressed: _decrementCounter,
+            child: Icon(Icons.remove),
+          ),
+        ],
       ),
     );
   }

@@ -1,23 +1,23 @@
 # Description of your result
 
-You can describe your results in any language that is convenient for you, not just English.
+Был реализован счетчик с дополнительным функционалом
 
 ## Description
 
-[Describe what you have done]
+см. Demo
 
 ## How to
 
-[Describe how to run your application if there are any issues]
+Добавлена новая кнопка для вычитания значения счетчика
 
 ## Problems
 
-[Describe the problems you encountered]
+-
 
 ## More
 
-[Here you can brag about what you managed to implement or do something beyond the task]
+Не хватило информации на курсе о переходе с Dart 2 на Dart 3
 
 ## Demo
 
-[Leave links to screencasts/screenshots here, you can use a GitHub repository or a separate cloud service]
+Demo Link
