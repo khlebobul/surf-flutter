@@ -20,4 +20,6 @@
 
 ## Demo
 
-Demo Link
+https://github.com/khlebobul/suft-flutter/assets/77191581/8aafb891-18d1-4493-90a2-7517479347f1
+
+
