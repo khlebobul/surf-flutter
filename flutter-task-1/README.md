@@ -18,6 +18,7 @@
 
 ## Demo
 
-https://github.com/khlebobul/suft-flutter/assets/77191581/8aafb891-18d1-4493-90a2-7517479347f1
+![task-1 demo](https://github.com/khlebobul/suft-flutter/assets/77191581/0c811966-be13-4145-a1a2-6d8c75a1c0ce)
+
 
 
