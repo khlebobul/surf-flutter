@@ -45,9 +45,11 @@ class _HomePageStatefulState extends State<HomePageStateful> {
     if (_counter > 0) {
       setState(() {
         _counter--;
-        _decrementCount++;
       });
     }
+    setState(() {
+      _decrementCount++;
+    });
   }
 
   @override
