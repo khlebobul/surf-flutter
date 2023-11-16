@@ -16,6 +16,9 @@ pubspec файл выглядит странно (использовал шаб�
 
 ## Demo
 
+https://github.com/khlebobul/surf-flutter/assets/77191581/2bc967ac-554e-477b-8fd2-4672d0bc3d80
+
+
 
 
 
