@@ -31,6 +31,7 @@ class _InteractiveWidgetState extends State<InteractiveWidget> {
   double xOffset = 0.0;
   double yOffset = 0.0;
   double scaleFactor = 1.0;
+  int _turns = 3;
 
   @override
   Widget build(BuildContext context) {
@@ -58,15 +59,16 @@ class _InteractiveWidgetState extends State<InteractiveWidget> {
             },
             onLongPress: () {
               setState(() {
-                RotatedBox(
-                  quarterTurns: 3,
-                );
+                _turns++;
               });
             },
-            child: Image.asset(
-              'assets/dvd.png',
-              color: boxColor,
-              width: 200,
+            child: RotatedBox(
+              quarterTurns: _turns,
+              child: Image.asset(
+                'assets/dvd.png',
+                color: boxColor,
+                width: 200,
+              ),
             ),
           ),
         ),
