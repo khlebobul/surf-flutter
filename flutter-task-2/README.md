@@ -9,7 +9,7 @@
 
 ## Description
 
-Мне очень понравилась серия сериала "Офис", где герои наблюдали за логотипом DVD, который долже был попасть прямо в угол экрана. После этого я прочитал статью [Did the Bouncing DVD Logo Ever Actually Hit the Corner of the Screen? ]([url](https://www.mentalfloss.com/posts/did-the-bouncing-dvd-logo-ever-hit-the-corner-of-the-screen)) с небольшой теорией по этому вопросу. 
+Мне очень понравилась серия сериала "Офис", где герои наблюдали за логотипом DVD, который долже был попасть прямо в угол экрана. После этого я прочитал статью [Did the Bouncing DVD Logo Ever Actually Hit the Corner of the Screen?]([url](https://www.mentalfloss.com/posts/did-the-bouncing-dvd-logo-ever-hit-the-corner-of-the-screen)) с небольшой теорией по этому вопросу. 
 
 ## How to
 
