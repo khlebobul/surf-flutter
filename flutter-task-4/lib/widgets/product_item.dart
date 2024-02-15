@@ -6,13 +6,38 @@ class ItemProduct extends StatelessWidget {
   final bool isFirstItemOfCategory;
 
   const ItemProduct({
-    super.key,
+    Key? key,
     required this.item,
     required this.isFirstItemOfCategory,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // Расчет отображаемого количества
+    String displayAmount = '';
+    if (item.amount is Quantity) {
+      displayAmount = '${item.amount.value.toString()} шт';
+    } else if (item.amount is Grams) {
+      displayAmount = '${(item.amount.value / 1000).toString()} кг';
+    }
+
+    // Расчет отображаемой цены со скидкой
+    double discountedPrice = (item.price * item.sale ~/ 100).toDouble();
+    TextStyle? priceStyle = Theme.of(context).textTheme.bodySmall;
+    if (item.sale != 0) {
+      priceStyle = priceStyle!.copyWith(
+        decoration: TextDecoration.lineThrough,
+        color: Theme.of(context).colorScheme.tertiary,
+      );
+    }
+
+    TextStyle? discountedPriceStyle = Theme.of(context).textTheme.bodySmall;
+    if (item.sale != 0) {
+      discountedPriceStyle = discountedPriceStyle!.copyWith(
+        color: Theme.of(context).colorScheme.error,
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.only(
         top: 16,
@@ -55,41 +80,22 @@ class ItemProduct extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        if (item.amount is Quantity)
-                          Text(
-                            '${item.amount.value.toString()} шт',
-                            style: Theme.of(context).textTheme.displayMedium,
-                          ),
-                        if (item.amount is Grams)
-                          Text(
-                            '${(item.amount.value / 1000).toString()} кг',
-                            style: Theme.of(context).textTheme.displayMedium,
-                          ),
+                        Text(
+                          displayAmount,
+                          style: Theme.of(context).textTheme.displayMedium,
+                        ),
                         const Spacer(),
                         Text(
                           '${item.price.toString()} руб',
-                          style:
-                              Theme.of(context).textTheme.bodySmall!.copyWith(
-                                    decoration: item.sale != 0
-                                        ? TextDecoration.lineThrough
-                                        : null,
-                                    color: item.sale != 0
-                                        ? Theme.of(context).colorScheme.tertiary
-                                        : null,
-                                  ),
+                          style: priceStyle,
                         ),
                         const SizedBox(
                           width: 16,
                         ),
                         if (item.sale != 0)
                           Text(
-                            '${(item.price * item.sale ~/ 100).toString()} руб',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .copyWith(
-                                  color: Theme.of(context).colorScheme.error,
-                                ),
+                            '${discountedPrice.toString()} руб',
+                            style: discountedPriceStyle,
                           ),
                       ],
                     ),
