@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:surf_flutter_courses_template/models/products_model.dart';
 
 enum SortType {
@@ -14,14 +13,13 @@ enum SortType {
 
 class FilterListScreen extends StatefulWidget {
   final List<ProductEntity> products;
-
   final SortType initialSortType;
 
   const FilterListScreen({
-    super.key,
+    Key? key,
     required this.products,
     required this.initialSortType,
-  });
+  }) : super(key: key);
 
   @override
   State<FilterListScreen> createState() => _FilterListScreenState();
@@ -29,6 +27,7 @@ class FilterListScreen extends StatefulWidget {
 
 class _FilterListScreenState extends State<FilterListScreen> {
   late SortType sortType;
+  late ThemeData themeData;
 
   @override
   void initState() {
@@ -36,14 +35,10 @@ class _FilterListScreenState extends State<FilterListScreen> {
     sortType = widget.initialSortType;
   }
 
-  void _onSortTypeChanged(SortType? value) {
-    setState(() {
-      sortType = value!;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    themeData = Theme.of(context); // Выносим тему в переменную
+
     return Wrap(
       children: [
         Column(
@@ -54,13 +49,13 @@ class _FilterListScreenState extends State<FilterListScreen> {
               padding: const EdgeInsets.only(left: 20.0, top: 24),
               child: Text(
                 'Сортировка',
-                style: Theme.of(context).textTheme.labelLarge,
+                style: themeData.textTheme.labelLarge,
               ),
             ),
             RadioListTile(
               title: Text(
                 'Без сортировки',
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: themeData.textTheme.headlineMedium,
               ),
               value: SortType.withoutSort,
               groupValue: sortType,
@@ -70,7 +65,7 @@ class _FilterListScreenState extends State<FilterListScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Text(
                 'По имени',
-                style: Theme.of(context).textTheme.displayMedium,
+                style: themeData.textTheme.displayMedium,
               ),
             ),
             const Padding(
@@ -80,7 +75,7 @@ class _FilterListScreenState extends State<FilterListScreen> {
             RadioListTile(
               title: Text(
                 'По имени от А до Я',
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: themeData.textTheme.headlineMedium,
               ),
               value: SortType.alphabetFromA,
               groupValue: sortType,
@@ -89,7 +84,7 @@ class _FilterListScreenState extends State<FilterListScreen> {
             RadioListTile(
               title: Text(
                 'По имени от Я до А',
-                style: Theme.of(context).textTheme.headlineMedium,
+                style: themeData.textTheme.headlineMedium,
               ),
               value: SortType.alphabetToA,
               groupValue: sortType,
@@ -103,13 +98,13 @@ class _FilterListScreenState extends State<FilterListScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Text(
                 'По цене',
-                style: Theme.of(context).textTheme.displayMedium,
+                style: themeData.textTheme.displayMedium,
               ),
             ),
             RadioListTile(
                 title: Text(
                   'По возрастанию',
-                  style: Theme.of(context).textTheme.headlineMedium,
+                  style: themeData.textTheme.headlineMedium,
                 ),
                 value: SortType.lowToHighPrice,
                 groupValue: sortType,
@@ -117,7 +112,7 @@ class _FilterListScreenState extends State<FilterListScreen> {
             RadioListTile(
                 title: Text(
                   'По убыванию',
-                  style: Theme.of(context).textTheme.headlineMedium,
+                  style: themeData.textTheme.headlineMedium,
                 ),
                 value: SortType.highToLowPrice,
                 groupValue: sortType,
@@ -130,13 +125,13 @@ class _FilterListScreenState extends State<FilterListScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Text(
                 'По типу',
-                style: Theme.of(context).textTheme.displayMedium,
+                style: themeData.textTheme.displayMedium,
               ),
             ),
             RadioListTile(
                 title: Text(
                   'По типу  от А до Я',
-                  style: Theme.of(context).textTheme.headlineMedium,
+                  style: themeData.textTheme.headlineMedium,
                 ),
                 value: SortType.typeFromA,
                 groupValue: sortType,
@@ -144,7 +139,7 @@ class _FilterListScreenState extends State<FilterListScreen> {
             RadioListTile(
                 title: Text(
                   'По типу  от Я до А',
-                  style: Theme.of(context).textTheme.headlineMedium,
+                  style: themeData.textTheme.headlineMedium,
                 ),
                 value: SortType.typeToA,
                 groupValue: sortType,
@@ -169,21 +164,27 @@ class _FilterListScreenState extends State<FilterListScreen> {
                 );
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.onPrimary,
+                backgroundColor: themeData.colorScheme.onPrimary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
               child: Text(
                 'Готово',
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      color: Theme.of(context).colorScheme.secondaryContainer,
-                    ),
+                style: themeData.textTheme.bodyMedium!.copyWith(
+                  color: themeData.colorScheme.secondaryContainer,
+                ),
               ),
             ),
           ),
         ),
       ],
     );
+  }
+
+  void _onSortTypeChanged(SortType? value) {
+    setState(() {
+      sortType = value!;
+    });
   }
 }
