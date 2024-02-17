@@ -144,12 +144,8 @@ class _FilterListScreenState extends State<FilterListScreen> {
                 value: SortType.typeToA,
                 groupValue: sortType,
                 onChanged: _onSortTypeChanged),
-            const SizedBox(
-              height: 40,
-            ),
-            const SizedBox(
-              height: 25,
-            ),
+            const SizedBox(height: 40),
+            const SizedBox(height: 25),
           ],
         ),
         Padding(
