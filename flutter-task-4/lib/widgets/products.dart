@@ -75,16 +75,20 @@ class _ListOfProductScreenState extends State<ListOfProductScreen> {
       appBar: AppBar(
         title: Column(
           children: [
-            Text(
-              AppStrings.checkNumber,
-              style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
+            Center(
+              child: Text(
+                AppStrings.checkNumber,
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+              ),
             ),
-            Text(AppStrings.checkDate,
-                style: Theme.of(context).textTheme.displaySmall!.copyWith(
-                      color: Theme.of(context).colorScheme.primaryContainer,
-                    )),
+            Center(
+              child: Text(AppStrings.checkDate,
+                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
+                        color: Theme.of(context).colorScheme.primaryContainer,
+                      )),
+            ),
           ],
         ),
       ),

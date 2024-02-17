@@ -152,6 +152,7 @@ class _FilterListScreenState extends State<FilterListScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
           child: SizedBox(
             width: 335,
+            height: 48,
             child: ElevatedButton(
               onPressed: () {
                 Navigator.pop(
