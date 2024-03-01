@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/task-6/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/task-6/build" />
+      <excludeFolder url="file://$MODULE_DIR$/task-6/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/task-4/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/task-4/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/task-4/build" />
+      <excludeFolder url="file://$MODULE_DIR$/task-7/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/task-7/build" />
+      <excludeFolder url="file://$MODULE_DIR$/task-7/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/task-2/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/task-2/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/task-2/build" />
+      <excludeFolder url="file://$MODULE_DIR$/task-5/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/task-5/build" />
+      <excludeFolder url="file://$MODULE_DIR$/task-5/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter-task-1/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter-task-1/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter-task-1/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter-task-3/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter-task-3/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter-task-3/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter-task-5/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter-task-5/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter-task-5/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter-task-2/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter-task-2/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter-task-2/build" />
+      <excludeFolder url="file://$MODULE_DIR$/task-1/build" />
+      <excludeFolder url="file://$MODULE_DIR$/task-1/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/task-1/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter-task-4/build" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter-task-4/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/flutter-task-4/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/task-3/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/task-3/build" />
+      <excludeFolder url="file://$MODULE_DIR$/task-3/.dart_tool" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
