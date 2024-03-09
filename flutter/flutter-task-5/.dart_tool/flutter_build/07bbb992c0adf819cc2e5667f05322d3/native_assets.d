@@ -1,0 +1,1 @@
+ /Users/glebshalimov/Code/surf-flutter/flutter/flutter-task-5/.dart_tool/flutter_build/07bbb992c0adf819cc2e5667f05322d3/native_assets.yaml: 
