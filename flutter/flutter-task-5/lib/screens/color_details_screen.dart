@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import '/data/color.dart';
-import '/widgets/extension.dart';
+import '../data/color_entity.dart';
+import '../utils/extension.dart';
 import '/widgets/clipboard.dart';
+
+// Горизонтальный паддинг
+const double kHorizontalPadding = 20;
+// Вертикальный паддинг
+const double kVerticalPadding = 30;
 
 // Детальная информация о цвете
 class PalleteDetailsScreen extends StatelessWidget {
   const PalleteDetailsScreen(
-      {super.key,
+      {Key? key,
       required this.colorElement,
       required this.clipboardWriteInteractor});
   // Отображаемый цвет
-  final ColorClass colorElement;
-  // Горизонтальный паддинг
-  final double kHorizontalPadding = 20;
-  // вертикальный паддинг
-  final double kVerticalPadding = 30;
-  // ИНтерактор для записи в буфер обмена
+  final ColorEntity colorElement;
+  // Интерактор для записи в буфер обмена
   final ClipboardWriteInteractor clipboardWriteInteractor;
 
   @override
@@ -39,7 +40,7 @@ class PalleteDetailsScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
                 left: kHorizontalPadding, top: kVerticalPadding),
             child: Text(
               colorElement.name,
@@ -47,7 +48,7 @@ class PalleteDetailsScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
                 vertical: kVerticalPadding, horizontal: kHorizontalPadding),
             child: _FieldWithShadow(
                 text: ['Hex', colorElement.clearValue],
@@ -55,7 +56,7 @@ class PalleteDetailsScreen extends StatelessWidget {
                 showCopyPostfix: true),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
                 vertical: kVerticalPadding, horizontal: kHorizontalPadding),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -2,13 +2,13 @@
 // Название ColorClass, чтобы отличался от Dart-класса Color
 import 'dart:ui';
 
-class ColorClass {
+class ColorEntity {
   //Название цвета
   final String name;
   // Код цвета HEX
   final String value;
 
-  ColorClass({required this.name, required this.value});
+  const ColorEntity({required this.name, required this.value});
 
   // Получение цвета, соответсвующего lue
   Color get hexColor => Color(int.parse('0xff${value.substring(1)}'));

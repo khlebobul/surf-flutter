@@ -7,7 +7,7 @@ import 'colors_events.dart';
 class ColorsPalleteBloc extends Bloc<ColorsPalleteEvent, ColorsPalleteState> {
   ColorsPalleteBloc({required this.colorsRepository})
       : super(ColorsPalleteLoadingState()) {
-    on<ColorsPalleteEventLoad>((event, emit) => _loadColors(event, emit));
+    on<ColorsPalleteEventLoad>(_loadColors);
   }
   // Репозиторий доступных цветов
   final IColorsRepository colorsRepository;

@@ -1,16 +1,15 @@
-import '../data/color.dart';
+import '../data/color_entity.dart';
 
-sealed class ColorsPalleteState {
-}
+sealed class ColorsPalleteState {}
+
 // Состояние загрузки цветов
-final class ColorsPalleteLoadingState extends ColorsPalleteState
-{
-
+final class ColorsPalleteLoadingState extends ColorsPalleteState {
+  ColorsPalleteLoadingState();
 }
+
 // Состояние успешной загрузки цветов
-final class ColorsPalleteLoadedState extends ColorsPalleteState
-{
+final class ColorsPalleteLoadedState extends ColorsPalleteState {
   //Список цветов для отображения
-  List<ColorClass> colors;
-ColorsPalleteLoadedState({required this.colors});
+  List<ColorEntity> colors;
+  ColorsPalleteLoadedState({required this.colors});
 }

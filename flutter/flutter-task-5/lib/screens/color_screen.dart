@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../color_pallete/color_state.dart';
 import '/color_pallete/colors_bloc.dart';
-import '/data/color.dart';
-import '/widgets/extension.dart';
+import '../data/color_entity.dart';
+import '../utils/extension.dart';
 import '/widgets/clipboard.dart';
 import '/screens/color_details_screen.dart';
 
@@ -20,10 +20,12 @@ class PalleteScreen extends StatelessWidget {
         foregroundColor: Colors.black,
         title: const Padding(
           padding: EdgeInsets.all(8.0),
-          child: Text(
-            'Эксклюзивная палитра \n"Colored Box"',
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800),
-            textAlign: TextAlign.start,
+          child: FittedBox(
+            child: Text(
+              'Эксклюзивная палитра \n"Colored Box"',
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800),
+              textAlign: TextAlign.start,
+            ),
           ),
         ),
       ),
@@ -90,7 +92,7 @@ class PalleteScreen extends StatelessWidget {
 
 class _ColorInformationPanel extends StatelessWidget {
   const _ColorInformationPanel({required this.color});
-  final ColorClass color;
+  final ColorEntity color;
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,5 @@
 import 'package:super_clipboard/super_clipboard.dart';
-import 'extension.dart';
+import '../utils/extension.dart';
 
 // Интерактор для сохранения данных о цвете в буфер обмена
 class ClipboardWriteInteractor {

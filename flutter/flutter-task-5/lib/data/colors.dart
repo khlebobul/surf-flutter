@@ -1,16 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
-ColorDTO _$ColorDTOFromJson(Map<String, dynamic> json) => ColorDTO(
-      name: json['name'] as String,
-      value: json['value'] as String?,
-    );
+part 'colors.g.dart';
 
-Map<String, dynamic> _$ColorDTOToJson(ColorDTO instance) => <String, dynamic>{
-      'name': instance.name,
-      'value': instance.value,
-    };
-
-// Содержит цвет и его характеристики, полученные с сервера
 @JsonSerializable()
 class ColorDTO {
   //Название цвета
@@ -19,7 +10,7 @@ class ColorDTO {
   // Сейчас является nullable полем, поскольку это допустимо описанием входных данных
   final String? value;
 
-  ColorDTO({required this.name, required this.value});
+  const ColorDTO({required this.name, required this.value});
 
   factory ColorDTO.fromJson(Map<String, dynamic> json) =>
       _$ColorDTOFromJson(json);
