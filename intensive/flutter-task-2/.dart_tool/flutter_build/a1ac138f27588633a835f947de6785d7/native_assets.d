@@ -1,0 +1,1 @@
+ /Users/glebshalimov/Code/surf-flutter/intensive/flutter-task-2/.dart_tool/flutter_build/a1ac138f27588633a835f947de6785d7/native_assets.yaml: 
