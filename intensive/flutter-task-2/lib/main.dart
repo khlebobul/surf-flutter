@@ -42,34 +42,36 @@ class _InteractiveWidgetState extends State<InteractiveWidget> {
         Positioned(
           left: xOffset + MediaQuery.of(context).size.width / 2,
           top: yOffset + MediaQuery.of(context).size.height / 2,
-          child: GestureDetector(
-            onPanUpdate: (details) {
-              setState(() {
-                xOffset += details.delta.dx;
-                yOffset += details.delta.dy;
-              });
-            },
-            onTap: () {
-              setState(() {
-                boxColor = Colors.red;
-              });
-            },
-            onDoubleTap: () {
-              setState(() {
-                boxColor = Colors.blue;
-              });
-            },
-            onLongPress: () {
-              setState(() {
-                _turns++;
-              });
-            },
-            child: RotatedBox(
-              quarterTurns: _turns,
-              child: Image.asset(
-                'assets/dvd.png',
-                color: boxColor,
-                width: 200,
+          child: Positioned.fill(
+            child: GestureDetector(
+              onPanUpdate: (details) {
+                setState(() {
+                  xOffset += details.delta.dx;
+                  yOffset += details.delta.dy;
+                });
+              },
+              onTap: () {
+                setState(() {
+                  boxColor = Colors.red;
+                });
+              },
+              onDoubleTap: () {
+                setState(() {
+                  boxColor = Colors.blue;
+                });
+              },
+              onLongPress: () {
+                setState(() {
+                  _turns++;
+                });
+              },
+              child: RotatedBox(
+                quarterTurns: _turns,
+                child: Image.asset(
+                  'assets/dvd.png',
+                  color: boxColor,
+                  width: 200,
+                ),
               ),
             ),
           ),
