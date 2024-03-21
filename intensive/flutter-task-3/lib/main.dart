@@ -1,16 +1,53 @@
 import 'package:flutter/material.dart';
 
+class AppStrings {
+  static const String appTitle = 'Мое портфолио';
+  static const String portfolioTitle = 'Портфолио Шалимова Глеб';
+  static const String aboutMeTitle = 'Обо мне';
+  static const String experienceTitle = 'Опыт';
+  static const String projectsTitle = 'Проекты';
+  static const String interestsTitle = 'Увлечения';
+  static const String linkedInText = 'LinkedIn';
+  static const String twitterText = 'Twitter';
+  static const String githubText = 'GitHub';
+  static const String aboutMeContent =
+      'Я инженер-программист из Санкт-Петербурга с опытом работы в индустрии программного обеспечения более 3 лет. Мне нравится создавать чистые, удобные и доступные пользовательские интерфейсы как для пользователей, так и для разработчиков. В данный момент я обучаюсь в Иннополисе.';
+  static const List<String> experienceItems = [
+    'Ассистент преподавателя в университете Иннополис',
+    'Аналитик данных (стажер)',
+    'Junior Angular developer'
+  ];
+  static const List<String> projects = [
+    'Расширения для Raycast (150+ загрзок)',
+    'Телеграм-канал @ph_daily (520+ подписчиков)',
+    'Интернет-магазин с работами робота-художника'
+  ];
+  static const String interestsContent =
+      'Люблю играть в волейбол, путешествовать, рисовать с помощью робота художника';
+}
+
+class AppAssets {
+  static const String avatarPath = 'assets/avatar.png';
+}
+
+class AppLinks {
+  static const String linkedInUrl =
+      'https://www.linkedin.com/in/gleb-shalimov-5b502622b/';
+  static const String twitterUrl = 'https://twitter.com/khlebobul';
+  static const String githubUrl = 'https://github.com/khlebobul';
+}
+
 void main() {
   runApp(const PortfolioApp());
 }
 
 class PortfolioApp extends StatelessWidget {
-  const PortfolioApp({super.key});
+  const PortfolioApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Мое портфолио',
+      title: AppStrings.appTitle,
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
@@ -21,13 +58,13 @@ class PortfolioApp extends StatelessWidget {
 }
 
 class PortfolioScreen extends StatelessWidget {
-  const PortfolioScreen({super.key});
+  const PortfolioScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Портфолио Шалимова Глеб'),
+        title: const Text(AppStrings.portfolioTitle),
       ),
       body: Center(
         child: Column(
@@ -37,7 +74,7 @@ class PortfolioScreen extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: CircleAvatar(
                 radius: 80,
-                backgroundImage: AssetImage('assets/avatar.png'),
+                backgroundImage: AssetImage(AppAssets.avatarPath),
               ),
             ),
             const SizedBox(height: 20),
@@ -56,24 +93,24 @@ class PortfolioScreen extends StatelessWidget {
                   padding: EdgeInsets.all(8.0),
                   child: SocialLinkButton(
                     icon: Icons.work_history,
-                    text: 'LinkedIn',
-                    url: 'https://www.linkedin.com/in/gleb-shalimov-5b502622b/',
+                    text: AppStrings.linkedInText,
+                    url: AppLinks.linkedInUrl,
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: SocialLinkButton(
                     icon: Icons.people,
-                    text: 'Twitter',
-                    url: 'https://twitter.com/khlebobul',
+                    text: AppStrings.twitterText,
+                    url: AppLinks.twitterUrl,
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: SocialLinkButton(
                     icon: Icons.code,
-                    text: 'GitHub',
-                    url: 'https://github.com/khlebobul',
+                    text: AppStrings.githubText,
+                    url: AppLinks.githubUrl,
                   ),
                 ),
               ],
@@ -82,56 +119,54 @@ class PortfolioScreen extends StatelessWidget {
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.all(20),
-                children: const [
-                  Text(
-                    'Обо мне',
+                children: [
+                  const Text(
+                    AppStrings.aboutMeTitle,
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
-                  Padding(
+                  const Padding(
                     padding: EdgeInsets.all(5.0),
                   ),
-                  Text(
-                      'Я инженер-программист из Санкт-Петербурга с опытом работы в индустрии программного обеспечения более 3 лет. Мне нравится создавать чистые, удобные и доступные пользовательские интерфейсы как для пользователей, так и для разработчиков. В данный момент я обучаюсь в Иннополисе.',
-                      style: TextStyle(fontSize: 18)),
-                  Padding(
+                  const Text(
+                    AppStrings.aboutMeContent,
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      'Опыт',
+                      AppStrings.experienceTitle,
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  SizedBox(height: 10),
-                  ExperienceItem(
-                      text: 'Ассистент преподавателя в университете Иннополис'),
-                  ExperienceItem(text: 'Аналитик данных (стажер)'),
-                  ExperienceItem(text: 'Junior Angular developer'),
-                  Padding(
+                  const SizedBox(height: 10),
+                  for (String item in AppStrings.experienceItems)
+                    ExperienceItem(text: item),
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      'Проекты',
+                      AppStrings.projectsTitle,
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  SizedBox(height: 10),
-                  Text('1. Расширения для Raycast (150+ загрзок)',
-                      style: TextStyle(fontSize: 18)),
-                  Text('2. Телеграм-канал @ph_daily (520+ подписчиков)',
-                      style: TextStyle(fontSize: 18)),
-                  Text('3. Интернет-магазин с работами робота-художника',
-                      style: TextStyle(fontSize: 18)),
-                  Padding(
+                  const SizedBox(height: 10),
+                  for (String item in AppStrings.projects)
+                    Text(
+                      item,
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                  const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      'Увлечения',
+                      AppStrings.interestsTitle,
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                   ),
-                  SizedBox(height: 10),
-                  Text(
-                    'Люблю играть в волейбол, путешествовать, рисовать с помощью робота художника',
+                  const SizedBox(height: 10),
+                  const Text(
+                    AppStrings.interestsContent,
                     style: TextStyle(fontSize: 18),
                   ),
                 ],
@@ -150,11 +185,11 @@ class SocialLinkButton extends StatelessWidget {
   final String url;
 
   const SocialLinkButton({
-    super.key,
+    Key? key,
     required this.icon,
     required this.text,
     required this.url,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -169,7 +204,7 @@ class SocialLinkButton extends StatelessWidget {
 class ExperienceItem extends StatelessWidget {
   final String text;
 
-  const ExperienceItem({super.key, required this.text});
+  const ExperienceItem({Key? key, required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
