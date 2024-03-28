@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:surf_flutter_courses_template/screens/modal_screen.dart';
 import 'package:surf_flutter_courses_template/values/colors.dart';
 import 'package:surf_flutter_courses_template/values/font.dart';
 
@@ -64,29 +65,46 @@ class HomeScreen extends StatelessWidget {
                   label: 'Имя',
                   text: 'Маркус Хассельборг',
                   icon: false,
-                  onTap: () {}),
+                  onPressed: () {},
+                  context: context),
               TextBlock(
                   label: 'Email',
                   text: 'MarkusHSS@gmail.com',
                   icon: false,
-                  onTap: () {}),
+                  onPressed: () {},
+                  context: context),
               TextBlock(
                   label: 'Дата рождения',
                   text: '03.03.1986',
                   icon: false,
-                  onTap: () {}),
+                  onPressed: () {},
+                  context: context),
               TextBlock(
                   label: 'Команда',
                   text: 'Сборная Швеции',
                   icon: true,
-                  onTap: () {}),
+                  onPressed: () {},
+                  context: context),
               TextBlock(
-                  label: 'Позиция', text: 'Скип', icon: true, onTap: () {}),
-              TextBlock(
-                  label: 'Тема оформления',
-                  text: 'Системная',
+                  label: 'Позиция',
+                  text: 'Скип',
                   icon: true,
-                  onTap: () {}),
+                  onPressed: () {},
+                  context: context),
+              TextBlock(
+                label: 'Тема оформления',
+                text: 'Системная',
+                icon: true,
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const ThemeModal();
+                    },
+                  ); // Вызываем метод для отображения модального окна
+                },
+                context: context,
+              ),
               const SizedBox(height: 64),
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
@@ -96,7 +114,14 @@ class HomeScreen extends StatelessWidget {
                     color: logOutButtonLightColor,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const ThemeModal();
+                    },
+                  );
+                },
                 child: Padding(
                   padding: const EdgeInsets.only(top: 16, bottom: 16),
                   child: SizedBox(
@@ -119,27 +144,29 @@ class AwardRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(right: 20.0),
-          child: Image.asset(firstPlaceImagePath),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 20.0),
-          child: Image.asset(firstPlaceImagePath),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 20.0),
-          child: Image.asset(thirdPlaceImagePath),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 20.0),
-          child: Image.asset(secondPlaceImagePath),
-        ),
-        Image.asset(thirdPlaceImagePath),
-      ],
+    return GestureDetector(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Image.asset(firstPlaceImagePath),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Image.asset(firstPlaceImagePath),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Image.asset(thirdPlaceImagePath),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 20.0),
+            child: Image.asset(secondPlaceImagePath),
+          ),
+          Image.asset(thirdPlaceImagePath),
+        ],
+      ),
     );
   }
 }
@@ -149,42 +176,49 @@ class TextBlock extends StatelessWidget {
   final String label;
   final String text;
   final bool icon;
-  final Function onTap;
+  final Function onPressed;
+  final BuildContext context;
 
   const TextBlock({
     Key? key,
     required this.label,
     required this.text,
     required this.icon,
-    required this.onTap,
+    required this.onPressed,
+    required this.context,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 335,
-      height: 56,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      margin: const EdgeInsets.symmetric(vertical: 4),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: textBlockLightColor,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                label,
-                style: labelBlockFont,
-              ),
-              Text(text, style: textBlockFont),
-            ],
-          ),
-          if (icon) SvgPicture.asset(nextIconPath),
-        ],
+    return GestureDetector(
+      onTap: () {
+        onPressed();
+      },
+      child: Container(
+        width: 335,
+        height: 56,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        margin: const EdgeInsets.symmetric(vertical: 4),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: textBlockLightColor,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: labelBlockFont,
+                ),
+                Text(text, style: textBlockFont),
+              ],
+            ),
+            if (icon) SvgPicture.asset(nextIconPath),
+          ],
+        ),
       ),
     );
   }

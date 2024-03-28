@@ -31,3 +31,8 @@ var loOutButtonFont = TextStyle(
   fontSize: 16,
   color: logOutButtonLightColor,
 );
+
+var readyButtonFont = TextStyle(
+  fontSize: 16,
+  color: backgroundLightColor,
+);
