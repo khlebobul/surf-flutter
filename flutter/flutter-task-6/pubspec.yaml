@@ -1,0 +1,36 @@
+name: surf_flutter_courses_template
+description: Our courses' template.
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=3.0.3 <4.0.0" # Dart SDK version
+  flutter: 3.10.3 # Fixed Flutter version
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.4
+  flutter_svg: ^2.0.10+1
+  json_annotation: ^4.8.1
+  provider: ^6.1.2
+  super_clipboard: ^0.8.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  json_serializable: ^6.7.1
+
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/
+    - assets/icons/
+    - assets/images/
