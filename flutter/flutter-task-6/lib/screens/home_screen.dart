@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: backgroundLightColor,
+        backgroundColor: backgroundLightColor1_1,
         title: Text(appBarTitle, style: headingFont),
         leading: Padding(
           padding: leadingPadding,
@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
         ],
       ),
       body: Container(
-        color: backgroundLightColor,
+        color: backgroundLightColor1_1,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -111,7 +111,7 @@ class HomeScreen extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16)),
                   side: BorderSide(
-                    color: logOutButtonLightColor,
+                    color: logOutButtonLightColor1_1,
                   ),
                 ),
                 onPressed: () {
@@ -201,7 +201,7 @@ class TextBlock extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 4),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: textBlockLightColor,
+          color: textBlockLightColor1_1,
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

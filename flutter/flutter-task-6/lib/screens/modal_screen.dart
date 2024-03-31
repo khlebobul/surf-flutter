@@ -160,7 +160,7 @@ class _ThemeModalState extends State<ThemeModal> {
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: readyButtonLightColor,
+                    backgroundColor: readyButtonLightColor1_1,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
@@ -209,7 +209,7 @@ class _RadioTileState extends State<RadioTile> {
               horizontal: VisualDensity.minimumDensity,
               vertical: VisualDensity.minimumDensity,
             ),
-            activeColor: buttonLightColor,
+            activeColor: buttonLightColor1_1,
             title: Text(widget.title),
             value: widget.title,
             groupValue: widget.isSelected ? widget.title : null,
@@ -227,7 +227,7 @@ class ThemeSelector extends StatelessWidget {
   final String image;
   final String text;
   final bool isSelected;
-  final Function onPressed;
+  final VoidCallback onPressed;
 
   const ThemeSelector({
     Key? key,
@@ -242,16 +242,19 @@ class ThemeSelector extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 12.0),
       child: GestureDetector(
-        onTap: onPressed as void Function()?,
+        onTap: onPressed, // Вызываем onPressed при нажатии
         child: Column(
           children: [
             Container(
               width: 103,
               height: 64, // Adjusted height to accommodate text
               decoration: BoxDecoration(
-                color: isSelected ? buttonLightColor : themeSelectorLighColor,
+                color: isSelected
+                    ? buttonLightColor1_1
+                    : themeSelectorLightColor1_1,
                 borderRadius: BorderRadius.circular(8),
-                border: isSelected ? Border.all(color: buttonLightColor) : null,
+                border:
+                    isSelected ? Border.all(color: buttonLightColor1_1) : null,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -269,7 +272,7 @@ class ThemeSelector extends StatelessWidget {
                   Text(
                     text,
                     style: TextStyle(
-                        color: isSelected ? Colors.black : textLightColor),
+                        color: isSelected ? Colors.black : textLightColor1_1),
                   ),
                 ],
               ),
