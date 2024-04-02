@@ -41,14 +41,16 @@ class ProfileScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            CircleAvatar(
-              minRadius: 5,
-              maxRadius: 50,
-              backgroundImage: const AssetImage('lib/assets/avatar.png'),
-              child: Text(
-                'Edit',
-                style: themesInteractor
-                    .currentTheme.themeData?.primaryTextTheme.titleMedium,
+            Center(
+              child: CircleAvatar(
+                minRadius: 5,
+                maxRadius: 50,
+                backgroundImage: const AssetImage('lib/assets/avatar.png'),
+                child: Text(
+                  'Edit',
+                  style: themesInteractor
+                      .currentTheme.themeData?.primaryTextTheme.titleMedium,
+                ),
               ),
             ),
             Center(
