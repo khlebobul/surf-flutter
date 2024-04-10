@@ -12,29 +12,28 @@ void main() {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-  // ```dart return Consumer( builder: (_, themeProvider, __) => MaterialApp( theme: themeProvider.currentTheme.themeData, home: const ProfileScreen(), ), );
+  const MainApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ThemeInteractor>(
-      create: (BuildContext context) => ThemeInteractor(
-        themesRepository: ThemesRepository(
-          themesStorage: ThemesStorage(
-            SharedPreferencesLocalStrorage(),
+      create: (BuildContext context) {
+        return ThemeInteractor(
+          themesRepository: ThemesRepository(
+            themesStorage: ThemesStorage(
+              SharedPreferencesLocalStrorage(),
+            ),
+            themesDataSource: ThemesDataSource(),
           ),
-          themesDataSource: ThemesDataSource(),
-        ),
-      )..loadTheme(),
-      builder: (context, child) {
-        return Consumer<ThemeInteractor>(
-          builder: (_, themeProvider, __) => MaterialApp(
-            theme: themeProvider.currentTheme.themeData,
-            home: const ProfileScreen(),
-            debugShowCheckedModeBanner: false,
-          ),
-        );
+        )..loadTheme();
       },
+      child: Consumer<ThemeInteractor>(
+        builder: (_, themeProvider, __) => MaterialApp(
+          theme: themeProvider.currentTheme.themeData,
+          home: const ProfileScreen(),
+          debugShowCheckedModeBanner: false,
+        ),
+      ),
     );
   }
 }
