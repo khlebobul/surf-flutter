@@ -10,7 +10,7 @@
 3. [Пример приложения-портфолио](https://github.com/khlebobul/surf-flutter/tree/main/flutter/flutter-task-3)
 4. [Список покупок](https://github.com/khlebobul/surf-flutter/tree/main/flutter/flutter-task-4)
 5. [Палитра цветов](https://github.com/khlebobul/surf-flutter/tree/main/flutter/flutter-task-5)
-6. Смена темы (в разработке)
+6. [Смена темы](https://github.com/khlebobul/surf-flutter/tree/main/flutter/flutter-task-6)
 7. Галерея фотографий (в разработке)
 8. Магический шар (в разработке)
 9. Валидация форм (в разработке)
