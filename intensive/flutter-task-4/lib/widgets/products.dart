@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:surf_flutter_courses_template/constants/app_strings.dart';
 import 'package:surf_flutter_courses_template/models/product_list.dart';
 import 'package:surf_flutter_courses_template/models/products_model.dart';
+import 'package:surf_flutter_courses_template/models/sale_info.dart';
 import 'package:surf_flutter_courses_template/widgets/filter.dart'
     as filterList;
 import 'package:surf_flutter_courses_template/widgets/filter.dart';
@@ -9,36 +11,6 @@ import 'package:surf_flutter_courses_template/widgets/sort.dart';
 import 'package:surf_flutter_courses_template/widgets/product_item.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-/// Строковые константы приложения
-class AppStrings {
-  static const appTitle = 'Это тайтл';
-  static const checkNumber = 'Чек № 73';
-  static const checkDate = '15.02.24 в 00:24';
-  static const productListTitle = 'Список покупок';
-  static const nothingHereYet = 'Здесь пока ничего нет';
-  static const inYourPurchase = 'В вашей покупке';
-  static const totalItems = 'товаров';
-  static const discount = 'Скидка';
-  static const total = 'Итого';
-  static const catalog = 'Каталог';
-  static const search = 'Поиск';
-  static const basket = 'Корзина';
-  static const personal = 'Личное';
-}
-
-class SaleInfo {
-  final int total;
-  final int totalSalePercent;
-  final int totalSaleRub;
-  final int totalPriceWithSale;
-
-  SaleInfo({
-    required this.total,
-    required this.totalSalePercent,
-    required this.totalSaleRub,
-    required this.totalPriceWithSale,
-  });
-}
 
 SaleInfo countSale({required List<ProductEntity> dataForStudents}) {
   // Реализация логики расчета скидок

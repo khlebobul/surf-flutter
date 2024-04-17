@@ -168,9 +168,11 @@ class _FilterListScreenState extends State<FilterListScreen> {
               ),
               child: Text(
                 'Готово',
-                style: themeData.textTheme.bodyMedium!.copyWith(
-                  color: themeData.colorScheme.secondaryContainer,
-                ),
+                style: themeData.textTheme.bodyMedium?.copyWith(
+                      // Используем оператор "?", чтобы избежать использования "!"
+                      color: themeData.colorScheme.secondaryContainer,
+                    ) ??
+                    const TextStyle(), // Если стиль null, используем пустой стиль
               ),
             ),
           ),
