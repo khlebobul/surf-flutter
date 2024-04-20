@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:surf_flutter_courses_template/widgets/grid_gallery.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -27,8 +28,14 @@ class MyHomePage extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
-                    // TODO: implement uploading
+                  onTap: () async {
+                    final ImagePicker picker = ImagePicker();
+                    final XFile? image =
+                        await picker.pickImage(source: ImageSource.gallery);
+                    if (image == null) {
+                      return;
+                    }
+                    final imagesBytes = await image.readAsBytes();
                   },
                   child: const Padding(
                     padding: EdgeInsets.only(right: 10.0),

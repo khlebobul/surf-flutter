@@ -4,10 +4,12 @@ import 'package:surf_flutter_courses_template/data/supabase_auth.dart';
 import 'package:surf_flutter_courses_template/screens/home_screen.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(
-    url: supabaseUrl,
-    anonKey: supabaseKey,
-  );
+      url: Utils.supabaseUrl,
+      anonKey: Utils.supabaseKey,
+      debug: true // optional
+      );
 
   runApp(const MyApp());
 }
