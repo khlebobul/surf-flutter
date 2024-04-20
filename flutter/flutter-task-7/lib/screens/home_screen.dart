@@ -35,7 +35,6 @@ class MyHomePage extends StatelessWidget {
                     if (image == null) {
                       return;
                     }
-                    final imagesBytes = await image.readAsBytes();
                   },
                   child: const Padding(
                     padding: EdgeInsets.only(right: 10.0),

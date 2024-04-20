@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:surf_flutter_courses_template/widgets/photo_details.dart';
 
 class PhotoGrid extends StatelessWidget {
   const PhotoGrid({Key? key}) : super(key: key);
@@ -46,25 +47,4 @@ class PhotoGrid extends StatelessWidget {
   }
 }
 
-class PhotoDetail extends StatelessWidget {
-  final String imageUrl;
 
-  const PhotoDetail({Key? key, required this.imageUrl}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: Center(
-          child: Hero(
-            tag: imageUrl,
-            child: Image.network(imageUrl),
-          ),
-        ),
-      ),
-    );
-  }
-}
