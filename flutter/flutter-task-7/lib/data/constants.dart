@@ -6,6 +6,15 @@ class PhotoCurrentIndexStyles {
   static const TextStyle appBarTextStyle = TextStyle(
     color: primaryColor,
     fontSize: 18,
+    fontWeight: FontWeight.bold,
+  );
+}
+
+class PhotoDetailStyles {
+  static const TextStyle appBarTextStyle = TextStyle(
+    color: secondaryColor,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
   );
 }
 

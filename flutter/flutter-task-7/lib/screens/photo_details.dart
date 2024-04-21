@@ -12,6 +12,7 @@ class PhotoDetail extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _PhotoDetailState createState() => _PhotoDetailState();
 }
 
@@ -44,9 +45,21 @@ class _PhotoDetailState extends State<PhotoDetail> {
                 Navigator.pop(context);
               },
             ),
-            Text(
-              '${_currentIndex + 1}/${widget.imageUrls.length}',
-              style: PhotoCurrentIndexStyles.appBarTextStyle,
+            Row(
+              children: [
+                Text(
+                  '${_currentIndex + 1}',
+                  style: PhotoCurrentIndexStyles.appBarTextStyle,
+                ),
+                const Text(
+                  '/',
+                  style: PhotoDetailStyles.appBarTextStyle,
+                ),
+                Text(
+                  '${widget.imageUrls.length}',
+                  style: PhotoDetailStyles.appBarTextStyle,
+                ),
+              ],
             ),
           ],
         ),

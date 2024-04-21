@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:surf_flutter_courses_template/widgets/grid_gallery.dart';
 
+const addPhotoIcon = Icon(Icons.add_a_photo_outlined);
+const logoPath = 'assets/logo.png';
+
 class MyHomePage extends StatelessWidget {
   const MyHomePage({
     super.key,
@@ -21,7 +24,7 @@ class MyHomePage extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(left: 25.0),
                       child: Image(
-                        image: AssetImage('assets/logo.png'),
+                        image: AssetImage(logoPath),
                         width: 140.66,
                       ),
                     ),
@@ -38,7 +41,7 @@ class MyHomePage extends StatelessWidget {
                   },
                   child: const Padding(
                     padding: EdgeInsets.only(right: 10.0),
-                    child: Icon(Icons.add_a_photo_outlined),
+                    child: addPhotoIcon,
                   ),
                 ),
               ],
