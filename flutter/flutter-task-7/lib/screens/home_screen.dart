@@ -49,7 +49,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: const PhotoGrid(),
+      body: PhotoGrid(),
     );
   }
 }
