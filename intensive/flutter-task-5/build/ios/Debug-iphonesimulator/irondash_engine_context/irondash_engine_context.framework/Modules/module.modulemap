@@ -1,0 +1,6 @@
+framework module irondash_engine_context {
+  umbrella header "irondash_engine_context-umbrella.h"
+
+  export *
+  module * { export * }
+}
