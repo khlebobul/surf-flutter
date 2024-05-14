@@ -24,7 +24,7 @@ class SharedPreferencesLocalStrorage implements ILocalStorageDataSource {
   }
 
   @override
-  void set<T>(String key, T value) async {
+  Future set<T>(String key, T value) async {
     final prefs = await SharedPreferences.getInstance();
     switch (T) {
       case String:

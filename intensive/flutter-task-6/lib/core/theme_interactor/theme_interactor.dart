@@ -40,6 +40,5 @@ class ThemeInteractor with ChangeNotifier {
   void loadTheme() async {
     _currentTheme = await themesRepository.getCurrentTheme();
     notifyListeners();
-    return;
   }
 }

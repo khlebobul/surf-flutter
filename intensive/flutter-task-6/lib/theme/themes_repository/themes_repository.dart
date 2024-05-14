@@ -16,11 +16,11 @@ class ThemesRepository {
   List<AppTheme> get darkThemes =>
       themesDataSource.themes.whereType<DarkTheme>().toList();
 
-  // Сохраняет тему  в локадьное хранилище
-  Future<void> saveTheme(String themeName) {
-    themesStorage.setTheme(themeName);
-    return Future.value();
-  }
+  // Сохраняет тему  в локальное хранилище
+Future<void> saveTheme(String themeName) async {
+  themesStorage.setTheme(themeName);
+}
+
 
   // Получить тему, сохранённую в локальном хранилище
   Future<AppTheme> getCurrentTheme() async {

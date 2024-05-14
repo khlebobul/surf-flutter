@@ -263,8 +263,8 @@ class _ThemesContainerState extends State<_ThemesContainer> {
             // Для отрисовки кружков _GridColoredCircleElement для каждой темы (здесь element) понадобятся цвета этой темы и цвета шрифтов
             final selectedElementThemeColors =
                 element.themeData?.extensions[ThemeColors] as ThemeColors;
-            final textStyle = element.themeData?.extensions[ThemeTextStyles]
-                as ThemeTextStyles;
+            final textStyle = element.themeData!.extensions[ThemeTextStyles]! as ThemeTextStyles;
+
             return [
               Expanded(
                 child: Padding(
