@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:surf_flutter_courses_template/data/themes_repository/themes_repository.dart';
+import 'package:surf_flutter_courses_template/theme/themes_repository/themes_repository.dart';
 import 'package:surf_flutter_courses_template/domain/app_theme.dart';
 
 // Интепактор для сохранения и получения сохранённой темы

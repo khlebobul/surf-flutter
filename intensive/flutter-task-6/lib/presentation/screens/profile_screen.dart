@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:surf_flutter_courses_template/domain/app_theme.dart';
-import 'package:surf_flutter_courses_template/data/extensions/build_context_buttons_style_extension.dart';
-import 'package:surf_flutter_courses_template/data/extensions/build_context_theme_color_extensions.dart';
-import 'package:surf_flutter_courses_template/data/extensions/build_context_theme_text_style_extension.dart';
+import 'package:surf_flutter_courses_template/utils/extensions/build_context_buttons_style_extension.dart';
+import 'package:surf_flutter_courses_template/utils/extensions/build_context_theme_color_extensions.dart';
+import 'package:surf_flutter_courses_template/utils/extensions/build_context_theme_text_style_extension.dart';
 import 'package:surf_flutter_courses_template/core/theme_interactor/theme_interactor.dart';
 import 'package:surf_flutter_courses_template/presentation/widgets/themes_bottomsheet.dart';
 

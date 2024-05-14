@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:surf_flutter_courses_template/data/data_source/themes_data_source.dart';
-import 'package:surf_flutter_courses_template/data/themes_repository/themes_repository.dart';
+import 'package:surf_flutter_courses_template/theme/themes_data_source.dart';
+import 'package:surf_flutter_courses_template/theme/themes_repository/themes_repository.dart';
 import 'package:surf_flutter_courses_template/data/data_source/local_storage/shared_preferences_local_storage.dart';
 import 'package:surf_flutter_courses_template/data/data_source/local_storage/themes_storage.dart';
 import 'package:surf_flutter_courses_template/presentation/screens/profile_screen.dart';

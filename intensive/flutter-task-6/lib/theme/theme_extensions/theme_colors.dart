@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:surf_flutter_courses_template/data/app_colors/app_colors.dart';
+import 'package:surf_flutter_courses_template/theme/app_colors/app_colors.dart';
 // Extension для хранения Colors используемых в приложении
 class ThemeColors extends ThemeExtension<ThemeColors> {
   // Color of Save action in AppBar and others

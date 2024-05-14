@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:surf_flutter_courses_template/data/app_colors/app_colors.dart';
-import 'package:surf_flutter_courses_template/data/app_typography/app_typography.dart';
+import 'package:surf_flutter_courses_template/theme/app_colors/app_colors.dart';
+import 'package:surf_flutter_courses_template/theme/app_typography/app_typography.dart';
 
 // В случае использования TextStyle, стиль которых буде отличаться от стиля,
 // определённого в TextStyle текущей темы, кастомный стиль можно описать в данном расширении

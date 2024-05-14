@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:surf_flutter_courses_template/data/app_colors/app_colors.dart';
-import 'package:surf_flutter_courses_template/data/app_typography/app_typography.dart';
-import 'package:surf_flutter_courses_template/data/theme_extensions/button_styles.dart';
-import 'package:surf_flutter_courses_template/data/theme_extensions/theme_colors.dart';
-import 'package:surf_flutter_courses_template/data/theme_extensions/theme_text_styles.dart';
+import 'package:surf_flutter_courses_template/theme/app_colors/app_colors.dart';
+import 'package:surf_flutter_courses_template/theme/app_typography/app_typography.dart';
+import 'package:surf_flutter_courses_template/theme/theme_extensions/button_styles.dart';
+import 'package:surf_flutter_courses_template/theme/theme_extensions/theme_colors.dart';
+import 'package:surf_flutter_courses_template/theme/theme_extensions/theme_text_styles.dart';
 
 // Класс темы приложения,
 // Параметр name хранит строку с названием темы,

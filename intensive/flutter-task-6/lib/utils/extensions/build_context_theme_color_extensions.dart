@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:surf_flutter_courses_template/data/theme_extensions/theme_colors.dart';
+import 'package:surf_flutter_courses_template/theme/theme_extensions/theme_colors.dart';
 
 // Extension для получения ThemeExtension текущей темы
 extension BuildContextThemeColorExtension on BuildContext {

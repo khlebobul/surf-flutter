@@ -2,13 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:surf_flutter_courses_template/data/app_colors/app_colors.dart';
-import 'package:surf_flutter_courses_template/data/theme_extensions/theme_colors.dart';
-import 'package:surf_flutter_courses_template/data/theme_extensions/theme_text_styles.dart';
+import 'package:surf_flutter_courses_template/theme/app_colors/app_colors.dart';
+import 'package:surf_flutter_courses_template/theme/theme_extensions/theme_colors.dart';
+import 'package:surf_flutter_courses_template/theme/theme_extensions/theme_text_styles.dart';
 import 'package:surf_flutter_courses_template/domain/app_theme.dart';
-import 'package:surf_flutter_courses_template/data/extensions/build_context_buttons_style_extension.dart';
-import 'package:surf_flutter_courses_template/data/extensions/build_context_theme_color_extensions.dart';
-import 'package:surf_flutter_courses_template/data/extensions/build_context_theme_text_style_extension.dart';
+import 'package:surf_flutter_courses_template/utils/extensions/build_context_buttons_style_extension.dart';
+import 'package:surf_flutter_courses_template/utils/extensions/build_context_theme_color_extensions.dart';
+import 'package:surf_flutter_courses_template/utils/extensions/build_context_theme_text_style_extension.dart';
 import 'package:surf_flutter_courses_template/core/theme_interactor/theme_interactor.dart';
 
 // Боттомшит с темами для выбора

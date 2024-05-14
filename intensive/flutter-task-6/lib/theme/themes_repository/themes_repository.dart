@@ -1,5 +1,5 @@
 import 'package:surf_flutter_courses_template/data/data_source/local_storage/themes_storage.dart';
-import 'package:surf_flutter_courses_template/data/data_source/themes_data_source.dart';
+import 'package:surf_flutter_courses_template/theme/themes_data_source.dart';
 import 'package:surf_flutter_courses_template/domain/app_theme.dart';
 
 class ThemesRepository {
