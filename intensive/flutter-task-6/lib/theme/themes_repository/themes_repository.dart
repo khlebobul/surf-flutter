@@ -5,8 +5,11 @@ import 'package:surf_flutter_courses_template/domain/app_theme.dart';
 class ThemesRepository {
   final ThemesDataSource themesDataSource;
   final ThemesStorage themesStorage;
-  ThemesRepository(
-      {required this.themesDataSource, required this.themesStorage});
+
+  ThemesRepository({
+    required this.themesDataSource,
+    required this.themesStorage,
+  });
 
   // Возвращает доступные светлые темы
   List<AppTheme> get lightThemes =>
@@ -16,11 +19,10 @@ class ThemesRepository {
   List<AppTheme> get darkThemes =>
       themesDataSource.themes.whereType<DarkTheme>().toList();
 
-  // Сохраняет тему  в локальное хранилище
-Future<void> saveTheme(String themeName) async {
-  themesStorage.setTheme(themeName);
-}
-
+  // Сохраняет тему в локальное хранилище
+  Future<void> saveTheme(String themeName) async {
+    await themesStorage.setTheme(themeName);
+  }
 
   // Получить тему, сохранённую в локальном хранилище
   Future<AppTheme> getCurrentTheme() async {
