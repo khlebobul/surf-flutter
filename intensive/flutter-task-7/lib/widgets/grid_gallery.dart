@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:surf_flutter_courses_template/screens/photo_details.dart';
+import 'package:surf_flutter_courses_template/data/supabase_auth.dart';
 
 class PhotoGrid extends StatelessWidget {
   const PhotoGrid({Key? key}) : super(key: key);
