@@ -1,6 +1,9 @@
-// fonts
-
 import 'package:flutter/material.dart';
+
+class DbConstants {
+  static const String photoTable = 'photo';
+  static const String imagePath = 'image_path';
+}
 
 class PhotoCurrentIndexStyles {
   static const TextStyle appBarTextStyle = TextStyle(
