@@ -12,7 +12,7 @@
 5. [Палитра цветов](https://github.com/khlebobul/surf-flutter/tree/main/flutter/flutter-task-5)
 6. [Смена темы](https://github.com/khlebobul/surf-flutter/tree/main/flutter/flutter-task-6)
 7. [Галерея фотографий](https://github.com/khlebobul/surf-flutter/tree/main/flutter/flutter-task-7)
-8. Магический шар (в разработке)
+8. [Магический шар](https://github.com/khlebobul/surf-flutter/tree/main/flutter/flutter-task-8)
 9. Валидация форм (в разработке)
 
 ### [Intensivе](https://github.com/khlebobul/surf-flutter/tree/main/intensive): проекты по Интенсиву
