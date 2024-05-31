@@ -1,4 +1,4 @@
-import 'package:surf_flutter_courses_template/data/supabase_auth.dart';
+import 'package:surf_flutter_courses_template/api/supabase_auth.dart';
 
 import '../uikit/constants.dart';
 
