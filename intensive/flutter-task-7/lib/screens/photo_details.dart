@@ -1,14 +1,15 @@
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:surf_flutter_courses_template/uikit/constants.dart';
 
 class PhotoPageView extends StatefulWidget {
-  final List<String> imageUrls;
+  final List<Uint8List> imageBlobs;
   final int initialIndex;
 
   const PhotoPageView({
     Key? key,
-    required this.imageUrls,
-    required this.initialIndex,
+    required this.imageBlobs,
+    required this.initialIndex, required List imageUrls,
   }) : super(key: key);
 
   @override
@@ -55,7 +56,7 @@ class PhotoDetailState extends State<PhotoPageView> {
                   style: PhotoDetailStyles.appBarTextStyle,
                 ),
                 Text(
-                  '${widget.imageUrls.length}',
+                  '${widget.imageBlobs.length}',
                   style: PhotoDetailStyles.appBarTextStyle,
                 ),
               ],
@@ -68,7 +69,7 @@ class PhotoDetailState extends State<PhotoPageView> {
         children: [
           PageView.builder(
             controller: _pageController,
-            itemCount: widget.imageUrls.length,
+            itemCount: widget.imageBlobs.length,
             onPageChanged: (index) {
               setState(() {
                 _currentIndex = index;
@@ -84,8 +85,8 @@ class PhotoDetailState extends State<PhotoPageView> {
                     padding: const EdgeInsets.only(left: 16.0, right: 16.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(24.0),
-                      child: Image.network(
-                        widget.imageUrls[index],
+                      child: Image.memory(
+                        widget.imageBlobs[index],
                         fit: BoxFit.cover,
                       ),
                     ),
