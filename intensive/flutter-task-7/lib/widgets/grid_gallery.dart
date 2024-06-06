@@ -1,14 +1,9 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:surf_flutter_courses_template/data/photo_service.dart';
 import 'package:surf_flutter_courses_template/screens/photo_details.dart';
-import 'package:supabase/supabase.dart';
 
 class PhotoGrid extends StatelessWidget {
-  final SupabaseClient supabaseClient;
-
-  const PhotoGrid({Key? key, required this.supabaseClient}) : super(key: key);
+  const PhotoGrid({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +11,9 @@ class PhotoGrid extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
         child: FutureBuilder(
-          future: PhotoService(supabaseClient).fetchPhotos(),
+          future: PhotoService().fetchPhotos(),
           builder:
-              (BuildContext context, AsyncSnapshot<List<Uint8List>> snapshot) {
+              (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
@@ -39,15 +34,15 @@ class PhotoGrid extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (_) => PhotoPageView(
-                              imageBlobs: snapshot.data!,
-                              initialIndex: index, imageUrls: const [],
+                              imageUrls: snapshot.data!,
+                              initialIndex: index,
                             ),
                           ),
                         );
                       },
                       child: Hero(
                         tag: 'photo$index',
-                        child: Image.memory(
+                        child: Image.network(
                           snapshot.data![index],
                           fit: BoxFit.cover,
                         ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:surf_flutter_courses_template/api/supabase_auth.dart';
 import 'package:surf_flutter_courses_template/widgets/grid_gallery.dart';
 
 const logoPath = 'assets/logo.png';
@@ -50,9 +49,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: PhotoGrid(
-        supabaseClient: Utils.supabaseClient,
-      ),
+      body: const PhotoGrid(),
     );
   }
 }
