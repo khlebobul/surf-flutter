@@ -13,8 +13,9 @@ class PhotoUploader {
     File imageFile = File(image.path);
     List<int> imageData = await imageFile.readAsBytes();
 
-    final response = await Utils.supabaseClient.storage.from('photos').upload(
-        'photos/${imageFile.path.split('/').last}', imageFile);
+    final response = await Utils.supabaseClient.storage
+        .from('photos')
+        .upload('photos', imageFile);
     return null;
   }
 }
