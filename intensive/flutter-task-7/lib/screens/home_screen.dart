@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:surf_flutter_courses_template/widgets/add_photo.dart';
 import 'package:surf_flutter_courses_template/widgets/grid_gallery.dart';
 
 const logoPath = 'assets/logo.png';
@@ -9,11 +9,10 @@ class MyHomePage extends StatelessWidget {
     super.key,
   });
 
-  Future<void> _pickImage() async {
-    final ImagePicker picker = ImagePicker();
-    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-    if (image == null) {
-      return;
+  Future<void> _pickImage(BuildContext context) async {
+    String? photoUrl = await PhotoUploader.uploadPhoto();
+    if (photoUrl != null) {
+      await savePhotoUrlToDatabase(photoUrl);
     }
   }
 
@@ -38,7 +37,7 @@ class MyHomePage extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: _pickImage,
+                  onTap: () => _pickImage(context),
                   child: const Padding(
                     padding: EdgeInsets.only(right: 10.0),
                     child: Icon(Icons.add_a_photo_outlined),
@@ -53,3 +52,5 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
+
+savePhotoUrlToDatabase(String photoUrl) {}
