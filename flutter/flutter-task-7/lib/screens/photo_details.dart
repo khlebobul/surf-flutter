@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:surf_flutter_courses_template/data/constants.dart';
+import 'package:surf_flutter_courses_template/uikit/constants.dart';
 
-class PhotoDetail extends StatefulWidget {
+class PhotoPageView extends StatefulWidget {
   final List<String> imageUrls;
   final int initialIndex;
 
-  const PhotoDetail({
+  const PhotoPageView({
     Key? key,
     required this.imageUrls,
     required this.initialIndex,
   }) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _PhotoDetailState createState() => _PhotoDetailState();
+  PhotoDetailState createState() => PhotoDetailState();
 }
 
-class _PhotoDetailState extends State<PhotoDetail> {
+class PhotoDetailState extends State<PhotoPageView> {
   late PageController _pageController;
   int _currentIndex = 0;
 

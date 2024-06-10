@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:surf_flutter_courses_template/data/supabase_auth.dart';
+import 'package:surf_flutter_courses_template/data/photo_service.dart';
 import 'package:surf_flutter_courses_template/screens/photo_details.dart';
 
 class PhotoGrid extends StatelessWidget {
@@ -11,7 +11,7 @@ class PhotoGrid extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
         child: FutureBuilder(
-          future: fetchPhotos(),
+          future: PhotoService().fetchPhotos(),
           builder:
               (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -33,7 +33,7 @@ class PhotoGrid extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => PhotoDetail(
+                            builder: (_) => PhotoPageView(
                               imageUrls: snapshot.data!,
                               initialIndex: index,
                             ),
@@ -56,16 +56,5 @@ class PhotoGrid extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Future<List<String>> fetchPhotos() async {
-    final response =
-        await Utils.supabaseClient.from('photo').select('image_path');
-
-    List<String> photoUrls = [];
-    for (var row in response) {
-      photoUrls.add(row['image_path'] as String);
-    }
-    return photoUrls;
   }
 }
