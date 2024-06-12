@@ -1,19 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:surf_flutter_courses_template/data/photo_service.dart';
 import 'package:surf_flutter_courses_template/widgets/add_photo.dart';
 import 'package:surf_flutter_courses_template/widgets/grid_gallery.dart';
 
 const logoPath = 'assets/logo.png';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  List<String> photoUrls = [];
 
   Future<void> _pickImage(BuildContext context) async {
     String? photoUrl = await PhotoUploader.uploadPhoto();
     if (photoUrl != null) {
       await savePhotoUrlToDatabase(photoUrl);
+      _refreshPhotoGrid();
     }
+  }
+
+  void _refreshPhotoGrid() {
+    setState(() {
+      photoUrls = PhotoService().fetchPhotos() as List<String>;
+    });
   }
 
   @override
@@ -48,7 +63,10 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: const PhotoGrid(),
+      body: PhotoGrid(
+        photoUrls: photoUrls,
+        refreshCallback: () {},
+      ),
     );
   }
 }
