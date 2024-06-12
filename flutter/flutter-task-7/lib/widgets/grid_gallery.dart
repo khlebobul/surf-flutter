@@ -3,7 +3,13 @@ import 'package:surf_flutter_courses_template/data/photo_service.dart';
 import 'package:surf_flutter_courses_template/screens/photo_details.dart';
 
 class PhotoGrid extends StatelessWidget {
-  const PhotoGrid({Key? key}) : super(key: key);
+  final VoidCallback refreshCallback;
+
+  const PhotoGrid({
+    Key? key,
+    required List<String> photoUrls,
+    required this.refreshCallback,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
