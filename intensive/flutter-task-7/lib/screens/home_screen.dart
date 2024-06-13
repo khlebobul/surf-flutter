@@ -1,18 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:surf_flutter_courses_template/widgets/add_photo.dart';
+import 'dart:typed_data';
 import 'package:surf_flutter_courses_template/widgets/grid_gallery.dart';
 
 const logoPath = 'assets/logo.png';
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({
-    super.key,
-  });
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  final List<Uint8List> _localImages = [];
 
   Future<void> _pickImage(BuildContext context) async {
-    String? photoUrl = await PhotoUploader.uploadPhoto();
-    if (photoUrl != null) {
-      await savePhotoUrlToDatabase(photoUrl);
+    final ImagePicker picker = ImagePicker();
+    final XFile? pickedFile =
+        await picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      final Uint8List imageBytes = await pickedFile.readAsBytes();
+
+      setState(() {
+        _localImages.add(imageBytes);
+      });
+
+      String? photoUrl = await PhotoUploader.uploadPhoto(pickedFile);
+      if (photoUrl != null) {
+        await savePhotoUrlToDatabase(photoUrl);
+      }
     }
   }
 
@@ -48,7 +67,7 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: const PhotoGrid(),
+      body: PhotoGrid(localImages: _localImages),
     );
   }
 }
