@@ -8,5 +8,3 @@ Supabase – это opensource альтернатива Firebase. Мне оче�
 - [Build a User Management App with Flutter](https://supabase.com/docs/guides/getting-started/tutorials/with-flutter)
 - [Блог про Flutter](https://supabase.com/blog/tags/flutter)
 - [Hero animations](https://docs.flutter.dev/ui/animations/hero-animations)
-
-
