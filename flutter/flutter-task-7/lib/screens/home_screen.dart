@@ -1,14 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:surf_flutter_courses_template/data/photo_service.dart';
+import 'package:surf_flutter_courses_template/widgets/add_photo.dart';
 import 'package:surf_flutter_courses_template/widgets/grid_gallery.dart';
 
-const addPhotoIcon = Icon(Icons.add_a_photo_outlined);
 const logoPath = 'assets/logo.png';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  List<String> photoUrls = [];
+
+  Future<void> _pickImage(BuildContext context) async {
+    String? photoUrl = await PhotoUploader.uploadPhoto();
+    if (photoUrl != null) {
+      await savePhotoUrlToDatabase(photoUrl);
+      _refreshPhotoGrid();
+    }
+  }
+
+  void _refreshPhotoGrid() {
+    setState(() {
+      photoUrls = PhotoService().fetchPhotos() as List<String>;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +52,10 @@ class MyHomePage extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () async {
-                    final ImagePicker picker = ImagePicker();
-                    final XFile? image =
-                        await picker.pickImage(source: ImageSource.gallery);
-                    if (image == null) {
-                      return;
-                    }
-                  },
+                  onTap: () => _pickImage(context),
                   child: const Padding(
                     padding: EdgeInsets.only(right: 10.0),
-                    child: addPhotoIcon,
+                    child: Icon(Icons.add_a_photo_outlined),
                   ),
                 ),
               ],
@@ -49,7 +63,12 @@ class MyHomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: PhotoGrid(),
+      body: PhotoGrid(
+        photoUrls: photoUrls,
+        refreshCallback: () {},
+      ),
     );
   }
 }
+
+savePhotoUrlToDatabase(String photoUrl) {}
