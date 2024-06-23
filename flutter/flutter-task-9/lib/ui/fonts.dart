@@ -1,32 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:surf_flutter_courses_template/ui/colors.dart';
 
-TextStyle get categorysTextStyle => const TextStyle(
-      fontSize: 12,
-      fontFamily: 'SFProDisplay',
-      color: AppColors.black,
-    );
+class AppTextStyles {
+  static const TextStyle categoryTextStyle = TextStyle(
+    fontSize: 12,
+    fontFamily: 'SFProDisplay',
+    color: AppColors.black,
+  );
 
-TextStyle get formsTextStyle => const TextStyle(
-      fontSize: 16,
-      fontFamily: 'SFProDisplay',
-      color: AppColors.greyText,
-    );
+  static const TextStyle formsTextStyle = TextStyle(
+    fontSize: 16,
+    fontFamily: 'SFProDisplay',
+    color: AppColors.greyText,
+  );
 
-TextStyle get headlineTextStyle => const TextStyle(
-      fontSize: 24,
-      fontFamily: 'SFProDisplay',
-      color: AppColors.black,
-    );
+  static const TextStyle headlineTextStyle = TextStyle(
+    fontSize: 24,
+    fontFamily: 'SFProDisplay',
+    color: AppColors.black,
+  );
 
-TextStyle get checkListTextStyle => const TextStyle(
-      fontSize: 16,
-      fontFamily: 'SFProDisplay',
-      color: AppColors.black,
-    );
+  static const TextStyle checkListTextStyle = TextStyle(
+    fontSize: 16,
+    fontFamily: 'SFProDisplay',
+    color: AppColors.black,
+  );
 
-TextStyle get buttonTextStyle => const TextStyle(
-      fontSize: 18,
-      fontFamily: 'SFProDisplay',
-      color: AppColors.greyButtonText,
-    );
+  static const TextStyle buttonTextStyle = TextStyle(
+    fontSize: 18,
+    fontFamily: 'SFProDisplay',
+    color: AppColors.greyButtonText,
+  );
+}
