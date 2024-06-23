@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:surf_flutter_courses_template/constants.dart';
 import 'package:surf_flutter_courses_template/ui/colors.dart';
 import 'package:surf_flutter_courses_template/widgets/animal_button.dart';
+import 'package:surf_flutter_courses_template/widgets/animals_form.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -68,6 +69,28 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                 ),
               ],
+            ),
+            const SizedBox(height: 24),
+            AnimalFormField(
+              labelText: 'Имя питомца',
+              controller: TextEditingController(),
+              keyboardType: TextInputType.name,
+            ),
+            AnimalFormField(
+              //тут, конечно, можно использовать data picker, но в версии android есть "."
+              labelText: 'День рождения питомца',
+              controller: TextEditingController(),
+              keyboardType: TextInputType.datetime,
+            ),
+            AnimalFormField(
+              labelText: 'Вес, кг',
+              controller: TextEditingController(),
+              keyboardType: TextInputType.name,
+            ),
+            AnimalFormField(
+              labelText: 'Почта хозяина',
+              controller: TextEditingController(),
+              keyboardType: TextInputType.emailAddress,
             ),
           ],
         ),
