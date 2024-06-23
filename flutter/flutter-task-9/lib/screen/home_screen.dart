@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String? _birthdayError;
   String? _weightError;
   String? _emailError;
+  bool _isLoading = false;
 
   void _validateForm() {
     setState(() {
@@ -37,13 +38,16 @@ class _HomeScreenState extends State<HomeScreen> {
         _nameError = nameErrorText;
       }
 
-      final DateFormat dateFormat = DateFormat('dd.MM.yyyy'); // Adjusted format
-      final DateTime birthday = dateFormat.parse(_birthdayController.text);
+      final DateFormat dateFormat = DateFormat('dd.MM.yyyy');
+      DateTime? birthday;
+      try {
+        birthday = dateFormat.parseStrict(_birthdayController.text);
+      } catch (e) {
+        _birthdayError = birhdayErrorText;
+      }
 
-      if (birthday == null) {
-        _birthdayError = _birthdayError;
-      } else if (birthday.isAfter(DateTime.now())) {
-        _birthdayError = _birthdayError;
+      if (birthday != null && birthday.isAfter(DateTime.now())) {
+        _birthdayError = birhdayErrorText;
       }
 
       final double? weight = double.tryParse(_weightController.text);
@@ -55,7 +59,25 @@ class _HomeScreenState extends State<HomeScreen> {
       if (!emailRegExp.hasMatch(_emailController.text)) {
         _emailError = ownerEmailErrorText;
       }
+
+      if (_nameError == null &&
+          _birthdayError == null &&
+          _weightError == null &&
+          _emailError == null) {
+        _showLoadingIndicator();
+      }
     });
+  }
+
+  Future<void> _showLoadingIndicator() async {
+    setState(() {
+      _isLoading = true;
+    });
+    await Future.delayed(const Duration(seconds: 2));
+    setState(() {
+      _isLoading = false;
+    });
+    // Handle form submission success (e.g., navigate to another screen, show success message, etc.)
   }
 
   Future<void> _selectBirthday(BuildContext context) async {
@@ -169,33 +191,35 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: SizedBox(
-              height: 56,
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: selectedIndex != null
-                    ? () {
-                        _validateForm();
-                      }
-                    : null,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      selectedIndex != null ? AppColors.red : Colors.grey,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
+          if (_isLoading) const CircularProgressIndicator(),
+          if (!_isLoading)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: SizedBox(
+                height: 56,
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: selectedIndex != null
+                      ? () {
+                          _validateForm();
+                        }
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        selectedIndex != null ? AppColors.red : Colors.grey,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0),
+                    ),
                   ),
-                ),
-                child: Text(
-                  saveButtonText,
-                  style: selectedIndex != null
-                      ? AppTextStyles.buttonActiveTextStyle
-                      : AppTextStyles.buttonInactiveTextStyle,
+                  child: Text(
+                    saveButtonText,
+                    style: selectedIndex != null
+                        ? AppTextStyles.buttonActiveTextStyle
+                        : AppTextStyles.buttonInactiveTextStyle,
+                  ),
                 ),
               ),
             ),
-          ),
           const SizedBox(height: 16),
         ],
       ),

@@ -32,7 +32,7 @@ class _VaccinationFormState extends State<VaccinationForm> {
     );
     if (picked != null) {
       setState(() {
-        controller.text = DateFormat('ddMMyyyy').format(picked);
+        controller.text = DateFormat('dd.MM.yyyy').format(picked);
       });
     }
   }
