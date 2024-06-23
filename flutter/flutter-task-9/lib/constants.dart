@@ -7,3 +7,15 @@ const String dogLabel = 'Собака';
 const String catLabel = 'Кошка';
 const String parrotLabel = 'Попугай';
 const String hamsterLabel = 'Хомяк';
+
+const String nameHintText = 'Имя питомца';
+const String birthdayHintText = 'День рождения питомца';
+const String weightHintText = 'Вес, кг';
+const String ownerEmailHintText = 'Почта хозяина';
+
+const String nameErrorText = 'Укажите имя питомца от 3 до 20 символов';
+const String birhdayErrorText = 'Укажите дату дд/мм/гггг';
+const String weightErrorText = 'Укажите вес, больше 0 кг';
+const String ownerEmailErrorText = 'Укажите почту хозяина';
+
+const String saveButtonText = 'Отправить';

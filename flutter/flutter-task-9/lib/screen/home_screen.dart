@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:surf_flutter_courses_template/constants.dart';
 import 'package:surf_flutter_courses_template/ui/colors.dart';
+import 'package:surf_flutter_courses_template/ui/fonts.dart';
 import 'package:surf_flutter_courses_template/widgets/animal_button.dart';
 import 'package:surf_flutter_courses_template/widgets/animals_form.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,6 +15,47 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int? selectedIndex;
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _birthdayController = TextEditingController();
+  final TextEditingController _weightController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+
+  String? _nameError;
+  String? _birthdayError;
+  String? _weightError;
+  String? _emailError;
+
+  void _validateForm() {
+    setState(() {
+      _nameError = null;
+      _birthdayError = null;
+      _weightError = null;
+      _emailError = null;
+
+      if (_nameController.text.length < 3 || _nameController.text.length > 20) {
+        _nameError = nameErrorText;
+      }
+
+      final DateFormat dateFormat = DateFormat('dd.MM.yyyy'); // Adjusted format
+      final DateTime? birthday = dateFormat.parse(_birthdayController.text);
+
+      if (birthday == null) {
+        _birthdayError = _birthdayError; 
+      } else if (birthday.isAfter(DateTime.now())) {
+        _birthdayError = _birthdayError; 
+      }
+
+      final double? weight = double.tryParse(_weightController.text);
+      if (weight == null || weight <= 0) {
+        _weightError = weightErrorText;
+      }
+
+      final RegExp emailRegExp = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
+      if (!emailRegExp.hasMatch(_emailController.text)) {
+        _emailError = ownerEmailErrorText;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,79 +64,117 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: AppColors.backgroundColor,
       ),
       backgroundColor: AppColors.backgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                AnimalButton(
-                  svgPath: dogSvgPath,
-                  label: dogLabel,
-                  isSelected: selectedIndex == 0,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = 0;
-                    });
-                  },
+      resizeToAvoidBottomInset: false,
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      AnimalButton(
+                        svgPath: dogSvgPath,
+                        label: dogLabel,
+                        isSelected: selectedIndex == 0,
+                        onTap: () {
+                          setState(() {
+                            selectedIndex = 0;
+                          });
+                        },
+                      ),
+                      AnimalButton(
+                        svgPath: catSvgPath,
+                        label: catLabel,
+                        isSelected: selectedIndex == 1,
+                        onTap: () {
+                          setState(() {
+                            selectedIndex = 1;
+                          });
+                        },
+                      ),
+                      AnimalButton(
+                        svgPath: parrotSvgPath,
+                        label: parrotLabel,
+                        isSelected: selectedIndex == 2,
+                        onTap: () {
+                          setState(() {
+                            selectedIndex = 2;
+                          });
+                        },
+                      ),
+                      AnimalButton(
+                        svgPath: hamsterSvgPath,
+                        label: hamsterLabel,
+                        isSelected: selectedIndex == 3,
+                        onTap: () {
+                          setState(() {
+                            selectedIndex = 3;
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  AnimalFormField(
+                    labelText: nameHintText,
+                    controller: _nameController,
+                    keyboardType: TextInputType.name,
+                    errorText: _nameError,
+                  ),
+                  AnimalFormField(
+                    labelText: birthdayHintText,
+                    controller: _birthdayController,
+                    keyboardType: TextInputType.datetime,
+                    errorText: _birthdayError,
+                  ),
+                  AnimalFormField(
+                    labelText: weightHintText,
+                    controller: _weightController,
+                    keyboardType: TextInputType.number,
+                    errorText: _weightError,
+                  ),
+                  AnimalFormField(
+                    labelText: ownerEmailHintText,
+                    controller: _emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    errorText: _emailError,
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: SizedBox(
+              height: 56,
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: selectedIndex != null
+                    ? () {
+                        _validateForm();
+                      }
+                    : null,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      selectedIndex != null ? AppColors.red : Colors.grey,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
                 ),
-                AnimalButton(
-                  svgPath: catSvgPath,
-                  label: catLabel,
-                  isSelected: selectedIndex == 1,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = 1;
-                    });
-                  },
+                child: Text(
+                  saveButtonText,
+                  style: selectedIndex != null
+                      ? AppTextStyles.buttonActiveTextStyle
+                      : AppTextStyles.buttonInactiveTextStyle,
                 ),
-                AnimalButton(
-                  svgPath: parrotSvgPath,
-                  label: parrotLabel,
-                  isSelected: selectedIndex == 2,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = 2;
-                    });
-                  },
-                ),
-                AnimalButton(
-                  svgPath: hamsterSvgPath,
-                  label: hamsterLabel,
-                  isSelected: selectedIndex == 3,
-                  onTap: () {
-                    setState(() {
-                      selectedIndex = 3;
-                    });
-                  },
-                ),
-              ],
+              ),
             ),
-            const SizedBox(height: 24),
-            AnimalFormField(
-              labelText: 'Имя питомца',
-              controller: TextEditingController(),
-              keyboardType: TextInputType.name,
-            ),
-            AnimalFormField(
-              //тут, конечно, можно использовать data picker, но в версии android есть "."
-              labelText: 'День рождения питомца',
-              controller: TextEditingController(),
-              keyboardType: TextInputType.datetime,
-            ),
-            AnimalFormField(
-              labelText: 'Вес, кг',
-              controller: TextEditingController(),
-              keyboardType: TextInputType.name,
-            ),
-            AnimalFormField(
-              labelText: 'Почта хозяина',
-              controller: TextEditingController(),
-              keyboardType: TextInputType.emailAddress,
-            ),
-          ],
-        ),
+          ),
+          const SizedBox(height: 16),
+        ],
       ),
     );
   }

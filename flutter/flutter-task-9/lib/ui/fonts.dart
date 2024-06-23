@@ -26,9 +26,15 @@ class AppTextStyles {
     color: AppColors.black,
   );
 
-  static const TextStyle buttonTextStyle = TextStyle(
+  static const TextStyle buttonInactiveTextStyle = TextStyle(
     fontSize: 18,
     fontFamily: 'SFProDisplay',
     color: AppColors.greyButtonText,
+  );
+
+  static const TextStyle buttonActiveTextStyle = TextStyle(
+    fontSize: 18,
+    fontFamily: 'SFProDisplay',
+    color: AppColors.white,
   );
 }

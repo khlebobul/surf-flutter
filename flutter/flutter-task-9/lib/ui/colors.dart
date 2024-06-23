@@ -9,6 +9,7 @@ class AppColors {
   static const Color black = Color(0xFF414657);
   static const Color white = Color(0xFFFFFFFF);
   static const Color greyText = Color(0xFFAFB2BC);
+  static const Color errorText = Color(0xFFFD4C56);
 
   //button
   static const Color greyButton = Color(0xFFD3D5D8);
