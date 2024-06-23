@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:surf_flutter_courses_template/constants.dart';
 import 'package:surf_flutter_courses_template/ui/colors.dart';
 import 'package:surf_flutter_courses_template/ui/fonts.dart';
-import 'package:surf_flutter_courses_template/widgets/animal_button.dart';
-import 'package:surf_flutter_courses_template/widgets/animals_form.dart';
 import 'package:intl/intl.dart';
+import 'package:surf_flutter_courses_template/widgets/animal_button.dart';
+import 'package:surf_flutter_courses_template/widgets/animal_check_box.dart';
+import 'package:surf_flutter_courses_template/widgets/animals_form.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -37,12 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
       }
 
       final DateFormat dateFormat = DateFormat('dd.MM.yyyy'); // Adjusted format
-      final DateTime? birthday = dateFormat.parse(_birthdayController.text);
+      final DateTime birthday = dateFormat.parse(_birthdayController.text);
 
       if (birthday == null) {
-        _birthdayError = _birthdayError; 
+        _birthdayError = _birthdayError;
       } else if (birthday.isAfter(DateTime.now())) {
-        _birthdayError = _birthdayError; 
+        _birthdayError = _birthdayError;
       }
 
       final double? weight = double.tryParse(_weightController.text);
@@ -55,6 +56,20 @@ class _HomeScreenState extends State<HomeScreen> {
         _emailError = ownerEmailErrorText;
       }
     });
+  }
+
+  Future<void> _selectBirthday(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null) {
+      setState(() {
+        _birthdayController.text = DateFormat('dd.MM.yyyy').format(picked);
+      });
+    }
   }
 
   @override
@@ -124,11 +139,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     keyboardType: TextInputType.name,
                     errorText: _nameError,
                   ),
-                  AnimalFormField(
-                    labelText: birthdayHintText,
-                    controller: _birthdayController,
-                    keyboardType: TextInputType.datetime,
-                    errorText: _birthdayError,
+                  InkWell(
+                    onTap: () => _selectBirthday(context),
+                    child: IgnorePointer(
+                      child: AnimalFormField(
+                        labelText: birthdayHintText,
+                        controller: _birthdayController,
+                        keyboardType: TextInputType.datetime,
+                        errorText: _birthdayError,
+                      ),
+                    ),
                   ),
                   AnimalFormField(
                     labelText: weightHintText,
@@ -142,6 +162,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     keyboardType: TextInputType.emailAddress,
                     errorText: _emailError,
                   ),
+                  if (selectedIndex == 0 || selectedIndex == 1)
+                    const VaccinationForm(),
+                  const SizedBox(height: 24),
                 ],
               ),
             ),

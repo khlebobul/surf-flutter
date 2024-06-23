@@ -17,6 +17,7 @@ class AppTextStyles {
   static const TextStyle headlineTextStyle = TextStyle(
     fontSize: 24,
     fontFamily: 'SFProDisplay',
+    fontWeight: FontWeight.bold,
     color: AppColors.black,
   );
 

@@ -18,4 +18,11 @@ const String birhdayErrorText = 'Укажите дату дд/мм/гггг';
 const String weightErrorText = 'Укажите вес, больше 0 кг';
 const String ownerEmailErrorText = 'Укажите почту хозяина';
 
+const String vaccinationHeadingText = 'Сделаны прививки от:';
+const String vaccinationOneText = 'бешенства';
+const String vaccinationTwoText = 'ковида';
+const String vaccinationThreeText = 'малярии';
+
+const String lastVaccinationDateText = 'Дата последней прививки';
+
 const String saveButtonText = 'Отправить';

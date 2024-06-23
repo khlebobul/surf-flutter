@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:surf_flutter_courses_template/ui/colors.dart';
 import 'package:surf_flutter_courses_template/ui/fonts.dart';
+import 'package:surf_flutter_courses_template/widgets/animal_check_box.dart';
 
 class AnimalButton extends StatelessWidget {
   final String svgPath;
