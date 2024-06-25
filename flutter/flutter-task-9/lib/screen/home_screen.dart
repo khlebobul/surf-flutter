@@ -171,6 +171,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     controller: _nameController,
                     keyboardType: TextInputType.name,
                     errorText: _nameError,
+                    onFieldSubmitted: (value) {
+                      setState(() {
+                        _nameError = _validateName(value);
+                      });
+                    },
                   ),
                   InkWell(
                     onTap: () => _selectBirthday(context),
@@ -180,6 +185,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         controller: _birthdayController,
                         keyboardType: TextInputType.datetime,
                         errorText: _birthdayError,
+                        onFieldSubmitted: (value) {
+                          setState(() {
+                            _birthdayError = _validateBirthday(value);
+                          });
+                        },
                       ),
                     ),
                   ),
@@ -188,12 +198,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     controller: _weightController,
                     keyboardType: TextInputType.number,
                     errorText: _weightError,
+                    onFieldSubmitted: (value) {
+                      setState(() {
+                        _weightError = _validateWeight(value);
+                      });
+                    },
                   ),
                   AnimalFormField(
                     labelText: ownerEmailHintText,
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     errorText: _emailError,
+                    onFieldSubmitted: (value) {
+                      setState(() {
+                        _emailError = _validateEmail(value);
+                      });
+                    },
                   ),
                   if (selectedIndex == 0 || selectedIndex == 1)
                     const VaccinationForm(),

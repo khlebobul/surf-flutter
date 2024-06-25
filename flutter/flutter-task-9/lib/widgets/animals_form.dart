@@ -7,6 +7,7 @@ class AnimalFormField extends StatefulWidget {
   final TextEditingController controller;
   final TextInputType keyboardType;
   final String? errorText;
+  final Function(String) onFieldSubmitted;
 
   const AnimalFormField({
     Key? key,
@@ -14,6 +15,7 @@ class AnimalFormField extends StatefulWidget {
     required this.keyboardType,
     required this.controller,
     this.errorText,
+    required this.onFieldSubmitted,
   }) : super(key: key);
 
   @override
@@ -24,7 +26,20 @@ class _AnimalFormFieldState extends State<AnimalFormField> {
   final FocusNode _focusNode = FocusNode();
 
   @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(_onFocusChange);
+  }
+
+  void _onFocusChange() {
+    if (!_focusNode.hasFocus) {
+      widget.onFieldSubmitted(widget.controller.text);
+    }
+  }
+
+  @override
   void dispose() {
+    _focusNode.removeListener(_onFocusChange);
     _focusNode.dispose();
     super.dispose();
   }
