@@ -46,6 +46,7 @@ class _VaccinationFormState extends State<VaccinationForm> {
           controller: controller,
           keyboardType: TextInputType.datetime,
           errorText: null,
+          onFieldSubmitted: (_) => _selectDate(context, controller),
         ),
       ),
     );
