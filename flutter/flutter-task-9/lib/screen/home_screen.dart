@@ -29,36 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _validateForm() {
     setState(() {
-      _nameError = null;
-      _birthdayError = null;
-      _weightError = null;
-      _emailError = null;
-
-      if (_nameController.text.length < 3 || _nameController.text.length > 20) {
-        _nameError = nameErrorText;
-      }
-
-      final DateFormat dateFormat = DateFormat('dd.MM.yyyy');
-      DateTime? birthday;
-      try {
-        birthday = dateFormat.parseStrict(_birthdayController.text);
-      } catch (e) {
-        _birthdayError = birhdayErrorText;
-      }
-
-      if (birthday != null && birthday.isAfter(DateTime.now())) {
-        _birthdayError = birhdayErrorText;
-      }
-
-      final double? weight = double.tryParse(_weightController.text);
-      if (weight == null || weight <= 0) {
-        _weightError = weightErrorText;
-      }
-
-      final RegExp emailRegExp = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
-      if (!emailRegExp.hasMatch(_emailController.text)) {
-        _emailError = ownerEmailErrorText;
-      }
+      _nameError = _validateName(_nameController.text);
+      _birthdayError = _validateBirthday(_birthdayController.text);
+      _weightError = _validateWeight(_weightController.text);
+      _emailError = _validateEmail(_emailController.text);
 
       if (_nameError == null &&
           _birthdayError == null &&
@@ -69,6 +43,44 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  String? _validateName(String name) {
+    if (name.length < 3 || name.length > 20) {
+      return nameErrorText;
+    }
+    return null;
+  }
+
+  String? _validateBirthday(String birthday) {
+    final DateFormat dateFormat = DateFormat('dd.MM.yyyy');
+    DateTime? birthdayDate;
+    try {
+      birthdayDate = dateFormat.parseStrict(birthday);
+    } catch (e) {
+      return birhdayErrorText;
+    }
+
+    if (birthdayDate.isAfter(DateTime.now())) {
+      return birhdayErrorText;
+    }
+    return null;
+  }
+
+  String? _validateWeight(String weight) {
+    final double? weightValue = double.tryParse(weight);
+    if (weightValue == null || weightValue <= 0) {
+      return weightErrorText;
+    }
+    return null;
+  }
+
+  String? _validateEmail(String email) {
+    final RegExp emailRegExp = RegExp(r'^[^@]+@[^@]+\.[^@]+$');
+    if (!emailRegExp.hasMatch(email)) {
+      return ownerEmailErrorText;
+    }
+    return null;
+  }
+
   Future<void> _showLoadingIndicator() async {
     setState(() {
       _isLoading = true;
@@ -77,7 +89,6 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _isLoading = false;
     });
-    // Handle form submission success (e.g., navigate to another screen, show success message, etc.)
   }
 
   Future<void> _selectBirthday(BuildContext context) async {
@@ -191,35 +202,31 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          if (_isLoading) const CircularProgressIndicator(),
-          if (!_isLoading)
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: SizedBox(
-                height: 56,
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: selectedIndex != null
-                      ? () {
-                          _validateForm();
-                        }
-                      : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        selectedIndex != null ? AppColors.red : Colors.grey,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12.0),
+          _isLoading
+              ? const CircularProgressIndicator()
+              : Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: SizedBox(
+                    height: 56,
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: _validateForm,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            selectedIndex != null ? AppColors.red : Colors.grey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                      ),
+                      child: Text(
+                        saveButtonText,
+                        style: selectedIndex != null
+                            ? AppTextStyles.buttonActiveTextStyle
+                            : AppTextStyles.buttonInactiveTextStyle,
+                      ),
                     ),
                   ),
-                  child: Text(
-                    saveButtonText,
-                    style: selectedIndex != null
-                        ? AppTextStyles.buttonActiveTextStyle
-                        : AppTextStyles.buttonInactiveTextStyle,
-                  ),
                 ),
-              ),
-            ),
           const SizedBox(height: 16),
         ],
       ),

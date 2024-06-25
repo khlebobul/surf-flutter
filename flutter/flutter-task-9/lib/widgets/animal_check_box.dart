@@ -37,6 +37,32 @@ class _VaccinationFormState extends State<VaccinationForm> {
     }
   }
 
+  Widget _buildDateField(TextEditingController controller) {
+    return InkWell(
+      onTap: () => _selectDate(context, controller),
+      child: IgnorePointer(
+        child: AnimalFormField(
+          labelText: lastVaccinationDateText,
+          controller: controller,
+          keyboardType: TextInputType.datetime,
+          errorText: null,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCheckbox({
+    required String label,
+    required bool value,
+    required ValueChanged<bool?> onChanged,
+  }) {
+    return CustomCheckbox(
+      label: label,
+      value: value,
+      onChanged: onChanged,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -46,69 +72,36 @@ class _VaccinationFormState extends State<VaccinationForm> {
           vaccinationHeadingText,
           style: AppTextStyles.headlineTextStyle,
         ),
-        CustomCheckbox(
+        _buildCheckbox(
           label: vaccinationOneText,
           value: rabies,
           onChanged: (bool? value) {
             setState(() {
-              rabies = value!;
+              rabies = value ?? false;
             });
           },
         ),
-        if (rabies)
-          InkWell(
-            onTap: () => _selectDate(context, rabiesDateController),
-            child: IgnorePointer(
-              child: AnimalFormField(
-                labelText: lastVaccinationDateText,
-                controller: rabiesDateController,
-                keyboardType: TextInputType.datetime,
-                errorText: null,
-              ),
-            ),
-          ),
-        CustomCheckbox(
+        if (rabies) _buildDateField(rabiesDateController),
+        _buildCheckbox(
           label: vaccinationTwoText,
           value: covid,
           onChanged: (bool? value) {
             setState(() {
-              covid = value!;
+              covid = value ?? false;
             });
           },
         ),
-        if (covid)
-          InkWell(
-            onTap: () => _selectDate(context, covidDateController),
-            child: IgnorePointer(
-              child: AnimalFormField(
-                labelText: lastVaccinationDateText,
-                controller: covidDateController,
-                keyboardType: TextInputType.datetime,
-                errorText: null,
-              ),
-            ),
-          ),
-        CustomCheckbox(
+        if (covid) _buildDateField(covidDateController),
+        _buildCheckbox(
           label: vaccinationThreeText,
           value: malaria,
           onChanged: (bool? value) {
             setState(() {
-              malaria = value!;
+              malaria = value ?? false;
             });
           },
         ),
-        if (malaria)
-          InkWell(
-            onTap: () => _selectDate(context, malariaDateController),
-            child: IgnorePointer(
-              child: AnimalFormField(
-                labelText: lastVaccinationDateText,
-                controller: malariaDateController,
-                keyboardType: TextInputType.datetime,
-                errorText: null,
-              ),
-            ),
-          ),
+        if (malaria) _buildDateField(malariaDateController),
         const SizedBox(height: 24),
       ],
     );
@@ -141,9 +134,9 @@ class CustomCheckbox extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
               ),
               side: BorderSide.none,
-              fillColor: value
-                  ? WidgetStateProperty.all(AppColors.red)
-                  : WidgetStateProperty.all(AppColors.white),
+              fillColor: WidgetStateProperty.all(
+                value ? AppColors.red : AppColors.white,
+              ),
               checkColor: AppColors.white,
               value: value,
               onChanged: onChanged,

@@ -11,12 +11,12 @@ class AnimalButton extends StatelessWidget {
   final bool isSelected;
 
   const AnimalButton({
-    super.key,
     required this.svgPath,
     required this.label,
     required this.onTap,
     this.color = AppColors.white,
     this.isSelected = false,
+    super.key,
   });
 
   @override
